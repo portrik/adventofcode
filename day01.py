@@ -6,8 +6,8 @@ def calculate_mass(inp_mass):
     if new_mass > 0:
         new_mass += calculate_mass(new_mass)
         return new_mass
-    
-    return 0
+    else:
+        return 0
 
 if __name__ == "__main__":
     total = 0
