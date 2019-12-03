@@ -1,7 +1,5 @@
-import math
-
 def calculate_mass(inp_mass):
-    new_mass = math.floor(inp_mass / 3) - 2
+    new_mass =inp_mass // 3 - 2
 
     if new_mass > 0:
         new_mass += calculate_mass(new_mass)
