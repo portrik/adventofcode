@@ -41,26 +41,43 @@ if __name__ == '__main__':
 
     for i in range(len(first.vertexes) - 1):
         for j in range(len(second.vertexes) - 1):
-            if first.vertexes[i].x_position == first.vertexes[i + 1].x_position:
+            if first.vertexes[i].x_position == first.vertexes[i + 1].x_position and second.vertexes[j].y_position == second.vertexes[j + 1].y_position:
+                further = second.vertexes[j].x_position
+                closer = second.vertexes[j + 1].x_position
                 higher = first.vertexes[i].y_position
                 lower = first.vertexes[i + 1].y_position
 
-                if higher < lower:
-                    higher, lower = lower, higher 
+                x_pos = first.vertexes[i].x_position
+                y_pos = second.vertexes[j].y_position
 
-                if second.vertexes[j].y_position >= lower and second.vertexes[j].y_position <= higher:
-                    if abs(first.vertexes[i].x_position) + abs(second.vertexes[j].y_position) < min_distance:
-                        min_distance = abs(first.vertexes[i].x_position) + abs(second.vertexes[j].y_position)
-            else:
+                if further < closer:
+                    further, closer = closer, further
+                
+                if higher < lower:
+                    higher, lower = lower, higher
+
+                if (x_pos > closer and x_pos < further) and (y_pos > lower and y_pos < higher):
+                    if abs(x_pos) + abs(y_pos) < min_distance:
+                        min_distance = abs(x_pos) + abs(y_pos)
+
+            elif first.vertexes[i].y_position == first.vertexes[i + 1].y_position and second.vertexes[j].x_position == second.vertexes[j + 1].x_position:
+                further = second.vertexes[j].y_position
+                closer = second.vertexes[j + 1].y_position
                 higher = first.vertexes[i].x_position
                 lower = first.vertexes[i + 1].x_position
 
-                if higher < lower:
-                    higher, lower = lower, higher 
+                x_pos = first.vertexes[i].y_position
+                y_pos = second.vertexes[j].x_position
+
+                if further < closer:
+                    further, closer = closer, further
                 
-                if second.vertexes[j].x_position >= lower and second.vertexes[j].x_position <= higher:
-                    if abs(first.vertexes[i].y_position) + abs(second.vertexes[j].x_position) < min_distance:
-                        min_distance = abs(first.vertexes[i].y_position) + abs(second.vertexes[j].x_position)
+                if higher < lower:
+                    higher, lower = lower, higher
+
+                if (x_pos > closer and x_pos < further) and (y_pos > lower and y_pos < higher):
+                    if abs(x_pos) + abs(y_pos) < min_distance:
+                        min_distance = abs(x_pos) + abs(y_pos)
 
 
     print(min_distance)
