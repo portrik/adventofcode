@@ -2,9 +2,10 @@ import os
 import math
 
 class Vertex:
-    def __init__(self, x_position, y_position):
+    def __init__(self, x_position, y_position, steps):
         self.x_position = x_position
         self.y_position = y_position
+        self.steps = steps
     
     def add_next(self, vertex):
         self.next_vertext = vertex
@@ -14,8 +15,9 @@ class Graph:
         self.vertexes = []
         x_position = 0
         y_position = 0
+        steps = 0
 
-        self.vertexes.append(Vertex(x_position, y_position))
+        self.vertexes.append(Vertex(x_position, y_position, steps))
 
         for i in range(len(moves)):
             if moves[i][0] == "U":
@@ -26,8 +28,10 @@ class Graph:
                 x_position += int(moves[i][1:])
             elif moves[i][0] == "L":
                 x_position -= int(moves[i][1:])
+            
+            steps += int(moves[i][1:])
 
-            self.vertexes.append(Vertex(x_position, y_position))
+            self.vertexes.append(Vertex(x_position, y_position, steps))
 
 def get_line(x1, x2, y1, y2):
     line = []
@@ -58,6 +62,7 @@ if __name__ == '__main__':
     second = Graph(second)
 
     min_distance = math.inf
+    steps = math.inf
 
     for i in range(0, len(first.vertexes) - 1, 1):
         print('Step %s out of %s' % (i, len(first.vertexes) - 2))
@@ -70,5 +75,12 @@ if __name__ == '__main__':
                     if line in new_line:
                         if abs(line[0]) + abs(line[1]) < min_distance:
                             min_distance = abs(line[0]) + abs(line[1])
-    
+                        
+                        steps_first = first.vertexes[i].steps + abs(first.vertexes[i].x_position - line[0]) + abs(first.vertexes[i].y_position - line[1])
+                        steps_second = second.vertexes[j].steps + abs(second.vertexes[j].x_position - line[0]) + abs(second.vertexes[j].y_position - line[1])
+
+                        if steps_first + steps_second < steps:
+                            steps = steps_first + steps_second
+
     print('Minimal distance is %s' % min_distance)
+    print('Minimal steps needed is %s' % steps)
