@@ -3,7 +3,7 @@ use std::io::prelude::*;
 use std::io::BufReader;
 
 fn calculate_fuel(mass: i32) -> i32 {
-    return ((mass as f32 / 3.0).floor() as i32) - 2;
+    return mass / 3 - 2;
 }
 
 fn main() {
