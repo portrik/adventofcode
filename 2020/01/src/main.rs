@@ -12,11 +12,11 @@ fn main() {
         vec.push(line.trim().parse::<i32>().unwrap());
     }
 
-    let (a, b) = find_addition(&vec, &2020);
+    let (a, b) = find_addition(&vec, &2020).unwrap_or_default();
     println!("Result 1: {}", a * b);
 
     for num in &vec {
-        let (c, d) = find_addition(&vec, &(2020 - num));
+        let (c, d) = find_addition(&vec, &(2020 - num)).unwrap_or_default();
 
         if c > 0 && d > 0 {
             println!("Result 2: {}", num * c * d);
@@ -25,19 +25,14 @@ fn main() {
     }
 }
 
-fn find_addition(source: &Vec<i32>, count: &i32) -> (i32, i32) {
-    let mut result_a: i32 = 0;
-    let mut result_b: i32 = 0;
-
+fn find_addition(source: &Vec<i32>, count: &i32) -> Option<(i32, i32)> {
     for num in source {
         let needed = count - num;
 
         if source.iter().any(|v| v == &needed) {
-            result_a = *num;
-            result_b = needed;
-            break;
+            return Some((*num, needed));
         }
     }
 
-    (result_a, result_b)
+    None
 }
