@@ -25,6 +25,15 @@ fn main() {
     }
 }
 
+/// Finds a pair of numbers from vector that add up to specified count.
+///
+/// Example
+/// ```
+/// # use rust01::find_addition;
+/// let (a, b) = find_addition(&vec![12, 2000, 20], &2020);
+/// # assert_eq!(a, 2000);
+/// # assert_eq!(b, 20);
+/// ```
 fn find_addition(source: &Vec<i32>, count: &i32) -> Option<(i32, i32)> {
     for num in source {
         let needed = count - num;
