@@ -3,13 +3,11 @@ use std::io::prelude::*;
 use std::io::BufReader;
 
 fn main() {
-    let f = File::open("input.txt").expect("Unable to open input file");
-    let f = BufReader::new(f);
+    // Loads the input file line by line into a vector
+    let f = BufReader::new(File::open("input.txt").expect("Unable to open input file"));
     let mut vec = Vec::new();
-
     for line in f.lines() {
-        let line = line.expect("Unable to read line");
-        vec.push(line);
+        vec.push(line.expect("Unable to read line"));
     }
 
     let mut result1 = 0;
@@ -30,8 +28,10 @@ fn main() {
         }
 
         let second_check = password.chars().collect::<Vec<char>>();
-        if (second_check[(min - 1) as usize] == to_check && second_check[(max - 1) as usize] != to_check)
-            || (second_check[(min - 1) as usize] != to_check && second_check[(max - 1) as usize] == to_check)
+        if (second_check[(min - 1) as usize] == to_check
+            && second_check[(max - 1) as usize] != to_check)
+            || (second_check[(min - 1) as usize] != to_check
+                && second_check[(max - 1) as usize] == to_check)
         {
             result2 += 1;
         }
