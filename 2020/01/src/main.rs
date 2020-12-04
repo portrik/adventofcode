@@ -28,7 +28,6 @@ fn main() {
 ///
 /// Example
 /// ```
-/// # use rust01::find_addition;
 /// let (a, b) = find_addition(&vec![12, 2000, 20], &2020);
 /// # assert_eq!(a, 2000);
 /// # assert_eq!(b, 20);
