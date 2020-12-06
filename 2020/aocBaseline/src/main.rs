@@ -7,7 +7,6 @@ fn main() {
     let f = BufReader::new(File::open("input.txt").expect("Unable to open input file"));
     let mut vec = Vec::new();
     for line in f.lines() {
-        let line = line.expect("Unable to read line");
-        vec.push(line);
+        vec.push(line.expect("Unable to read line"));
     }
 }
