@@ -16,7 +16,7 @@ fn main() {
     let (valid, one_jolt, three_jolt) = get_highest_jolts(&vec, wall);
 
     println!("Result 1: {}", one_jolt * three_jolt);
-    println!("Result 2: {}", calculate_permutations(&valid));
+    println!("Result 2: {}", calculate_combinations(&valid));
 }
 
 fn get_highest_jolts(adapters: &Vec<u32>, start: u32) -> (Vec<u32>, u32, u32) {
@@ -64,8 +64,8 @@ fn get_highest_jolts(adapters: &Vec<u32>, start: u32) -> (Vec<u32>, u32, u32) {
     (valid, one_jolt, three_jolt)
 }
 
-fn calculate_permutations(adapters: &Vec<u32>) -> u32 {
-    let mut permutations: u32 = 1;
+fn calculate_combinations(adapters: &Vec<u32>) -> u32 {
+    let mut combinations: u32 = 1;
     let mut i = 0;
 
     while i < adapters.len() - 1 {
@@ -82,18 +82,9 @@ fn calculate_permutations(adapters: &Vec<u32>) -> u32 {
             possibilities += 1;
         }
 
-        println!("For {} are {}", adapters[i], factorial(possibilities) / factorial(3 - possibilities));
-        permutations *= factorial(possibilities) / factorial(3 - possibilities);
+        combinations *= possibilities;
         i += 1;
     }
 
-    permutations
-}
-
-fn factorial(num: u32) -> u32 {
-    match num {
-        0 => 1,
-        1 => 1,
-        _ => factorial(num - 1) * num,
-    }
+    combinations
 }
