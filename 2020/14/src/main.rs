@@ -2,9 +2,11 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
 
+use std::collections::HashMap;
+
 fn main() {
     // Loads the input file line by line into a vector
-    let f = BufReader::new(File::open("test_input2.txt").expect("Unable to open input file"));
+    let f = BufReader::new(File::open("input.txt").expect("Unable to open input file"));
     let mut vec = Vec::new();
     for line in f.lines() {
         vec.push(line.expect("Unable to read line"));
@@ -61,7 +63,7 @@ fn count_memory(sequence: &Vec<String>) -> u128 {
 fn count_advanced_memory(sequence: &Vec<String>) -> u128 {
     let mut count: u128 = 0;
     let mut mask = "";
-    let mut memory: [u128; 65536] = [0; 65536];
+    let mut memory: HashMap<usize, u128> = HashMap::new();
 
     for inst in sequence {
         let split = inst.split("=").collect::<Vec<&str>>();
@@ -81,29 +83,35 @@ fn count_advanced_memory(sequence: &Vec<String>) -> u128 {
 
             for i in 0..chars.len() {
                 if chars[chars.len() - 1 - i] != '0' {
-                    if chars[chars.len() - 1 - i] == '1' {
+                    if targets.len() < 1 {
                         targets.push(address);
+                    }
 
-                        for i in 0..targets.len() {
-                            targets[i] = targets[i] | ((2 as usize).pow(i as u32));
+                    if chars[chars.len() - 1 - i] == '1' {
+                        for j in 0..targets.len() {
+                            targets[j] = targets[j] | ((2 as usize).pow(i as u32));
                         }
                     } else {
-                        targets.push(address | ((2 as usize).pow(i as u32)));
-                        targets.push(address & !((2 as usize).pow(i as u32)));
+                        let mut temp: Vec<usize> = Vec::new();
+
+                        for target in &targets {
+                            temp.push(target | ((2 as usize).pow(i as u32)));
+                            temp.push(target & !((2 as usize).pow(i as u32)));
+                        }
+
+                        targets = temp;
                     }
                 }
             }
 
-            println!("Writing {} to {} addresses", value, targets.len());
-
             for target in &targets {
-                memory[*target] = value;
+                memory.insert(*target, value);
             }
         }
     }
 
-    for mem in &memory {
-        count += mem;
+    for (_key, value) in memory {
+        count += value;
     }
 
     count
