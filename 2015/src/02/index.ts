@@ -35,5 +35,5 @@ export function results02(): void {
 	}
 
 	console.log(`02: First result is:\t ${result1}`);
-	console.log(`02: Second result is:\t ${result2}`);
+	console.log(`02: Second result is:\t ${result2}\n`);
 }
