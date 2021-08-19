@@ -72,7 +72,7 @@ export class Connection {
 				break;
 			}
 
-			return this.value as number;
+			return this.value;
 		}
 	}
 }
@@ -90,27 +90,25 @@ export function parseInstruction(instruction: string): Connection {
 }
 
 export function results07(): void {
-	const instructions = readFileSync(join(__dirname, 'input.txt'), 'utf-8')
+	const connections = readFileSync(join(__dirname, 'input.txt'), 'utf-8')
 		.split('\n')
 		.filter((line) => line.trim().length > 1)
 		.map((line) => parseInstruction(line));
 
-	const result: { [key: string]: number } = {};
+	console.log(
+		`07: First result is:\t ${connections
+			.find((con) => con.name === 'a')
+			?.evaluate(connections)}`
+	);
 
-	for (const connection of instructions) {
-		result[connection.name] = connection.evaluate(instructions);
-	}
-
-	console.log(`07: First result is:\t ${result['a']}`);
-
-	instructions.forEach((con) => (con.value = undefined));
-	const wireB = instructions.find((con) => con.name === 'b') as Connection;
+	connections.forEach((con) => (con.value = undefined));
+	const wireB = connections.find((con) => con.name === 'b') as Connection;
 	wireB.gate = Gate.CONSTANT;
 	wireB.value = 3176;
 
-	for (const connection of instructions) {
-		result[connection.name] = connection.evaluate(instructions);
-	}
-
-	console.log(`07: Second result is:\t ${result['a']}`);
+	console.log(
+		`07: Second result is:\t ${connections
+			.find((con) => con.name === 'a')
+			?.evaluate(connections)}`
+	);
 }
