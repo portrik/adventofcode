@@ -4,7 +4,7 @@ describe('07', () => {
 	test.each([
 		{
 			line: '123 -> x',
-			connection: new Connection('x', Gate.CONSTANT, [], 123),
+			connection: new Connection('x', Gate.CONSTANT, ['123']),
 		},
 		{
 			line: 'x AND y -> d',
