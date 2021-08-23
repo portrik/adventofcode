@@ -1,6 +1,9 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BaseSolution } from '../index';
+
 export enum Gate {
 	AND = 'AND',
 	OR = 'OR',
@@ -8,6 +11,49 @@ export enum Gate {
 	RSHIFT = 'RSHIFT',
 	LSHIFT = 'LSHIFT',
 	CONSTANT = 'CONSTANT',
+}
+export class Solution implements BaseSolution {
+	lines: Connection[] = [];
+
+	constructor() {
+		if (process.env.NODE_ENV !== 'test') {
+			this.lines = readFileSync(join(__dirname, 'input.txt'), 'utf-8')
+				.split('\n')
+				.filter((line) => line.length > 0)
+				.map((line) => this.parseInstruction(line));
+		}
+	}
+
+	first = (): number => {
+		return (
+			this.lines.find((line) => line.name === 'a')?.evaluate(this.lines) ?? -1
+		);
+	};
+
+	second = (): number => {
+		const first = this.first();
+
+		this.lines.forEach((con) => (con.value = undefined));
+		const wireB = this.lines.find((con) => con.name === 'b') as Connection;
+		wireB.gate = Gate.CONSTANT;
+		wireB.value = first;
+
+		return (
+			this.lines.find((line) => line.name === 'a')?.evaluate(this.lines) ?? -1
+		);
+	};
+
+	parseInstruction = (instruction: string): Connection => {
+		const split = instruction.split(' ');
+
+		if (split[1] === '->') {
+			return new Connection(split[2], Gate.CONSTANT, [split[0]]);
+		} else if (split[0] === 'NOT') {
+			return new Connection(split[3], Gate.NOT, [split[1]]);
+		} else {
+			return new Connection(split[4], split[1] as Gate, [split[0], split[2]]);
+		}
+	};
 }
 
 export class Connection {
@@ -75,40 +121,4 @@ export class Connection {
 			return this.value;
 		}
 	}
-}
-
-export function parseInstruction(instruction: string): Connection {
-	const split = instruction.split(' ');
-
-	if (split[1] === '->') {
-		return new Connection(split[2], Gate.CONSTANT, [split[0]]);
-	} else if (split[0] === 'NOT') {
-		return new Connection(split[3], Gate.NOT, [split[1]]);
-	} else {
-		return new Connection(split[4], split[1] as Gate, [split[0], split[2]]);
-	}
-}
-
-export function results07(): void {
-	const connections = readFileSync(join(__dirname, 'input.txt'), 'utf-8')
-		.split('\n')
-		.filter((line) => line.trim().length > 1)
-		.map((line) => parseInstruction(line));
-
-	console.log(
-		`07: First result is:\t ${connections
-			.find((con) => con.name === 'a')
-			?.evaluate(connections)}`
-	);
-
-	connections.forEach((con) => (con.value = undefined));
-	const wireB = connections.find((con) => con.name === 'b') as Connection;
-	wireB.gate = Gate.CONSTANT;
-	wireB.value = 3176;
-
-	console.log(
-		`07: Second result is:\t ${connections
-			.find((con) => con.name === 'a')
-			?.evaluate(connections)}`
-	);
 }

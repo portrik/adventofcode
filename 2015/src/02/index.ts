@@ -1,39 +1,54 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-export function paper(length: number, width: number, height: number): number {
-	const lw = length * width;
-	const wh = width * height;
-	const hl = height * length;
-	const extra = Math.min(lw, wh, hl);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BaseSolution } from '../index';
+export class Solution implements BaseSolution {
+	lines: string[] = [];
 
-	return 2 * lw + 2 * wh + 2 * hl + extra;
-}
-
-export function bow(length: number, width: number, height: number): number {
-	const values = [length, width, height].sort((a, b) => b - a);
-	values.splice(0, 1);
-	const base = values.reduce((acc, val) => (acc += 2 * val), 0);
-	const extra = length * width * height;
-
-	return base + extra;
-}
-
-export function results02(): void {
-	const values = readFileSync(join(__dirname, 'input.txt'), 'utf-8');
-
-	let result1 = 0;
-	let result2 = 0;
-
-	for (const line of values.split('\n')) {
-		const tmp = line.split('x');
-
-		if (tmp.length === 3) {
-			result1 += paper(Number(tmp[0]), Number(tmp[1]), Number(tmp[2]));
-			result2 += bow(Number(tmp[0]), Number(tmp[1]), Number(tmp[2]));
+	constructor() {
+		if (process.env.NODE_ENV !== 'test') {
+			this.lines = readFileSync(join(__dirname, 'input.txt'), 'utf-8')
+				.split('\n')
+				.filter((line) => line.length > 0);
 		}
 	}
 
-	console.log(`02: First result is:\t ${result1}`);
-	console.log(`02: Second result is:\t ${result2}\n`);
+	first = (): number => {
+		return this.lines
+			.map((line) => {
+				const split = line.split('x');
+
+				return this.bow(Number(split[0]), Number(split[1]), Number(split[2]));
+			})
+			.reduce((acc, cur) => (acc += cur), 0);
+	};
+
+	second = (): number => {
+		return this.lines
+			.map((line) => {
+				const split = line.split('x');
+
+				return this.paper(Number(split[0]), Number(split[1]), Number(split[2]));
+			})
+			.reduce((acc, cur) => (acc += cur), 0);
+	};
+
+	bow = (length: number, width: number, height: number): number => {
+		const values = [length, width, height].sort((a, b) => b - a);
+		values.splice(0, 1);
+		const base = values.reduce((acc, val) => (acc += 2 * val), 0);
+		const extra = length * width * height;
+
+		return base + extra;
+	};
+
+	paper = (length: number, width: number, height: number): number => {
+		const lw = length * width;
+		const wh = width * height;
+		const hl = height * length;
+		const extra = Math.min(lw, wh, hl);
+
+		return 2 * lw + 2 * wh + 2 * hl + extra;
+	};
 }

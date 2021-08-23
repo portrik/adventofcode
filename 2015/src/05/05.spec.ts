@@ -1,4 +1,4 @@
-import { isNice, isNice2 } from './index';
+import { Solution } from './index';
 
 describe('05', () => {
 	test.each([
@@ -8,7 +8,7 @@ describe('05', () => {
 		['haegwjzuvuyypxyu', false],
 		['dvszwmarrgswjxmb', false],
 	])('%s Should Be Nice: %s', (tested, result) => {
-		expect(isNice(tested)).toBe(result);
+		expect(new Solution().isNice(tested)).toBe(result);
 	});
 
 	test.each([
@@ -20,6 +20,6 @@ describe('05', () => {
 		['aaa', false],
 		['abcdefeghi', false],
 	])('%s Should Be Nice: %s', (tested, result) => {
-		expect(isNice2(tested)).toBe(result);
+		expect(new Solution().isNice2(tested)).toBe(result);
 	});
 });

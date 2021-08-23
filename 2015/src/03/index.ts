@@ -1,73 +1,87 @@
 import { join } from 'path';
 import { readFileSync } from 'fs';
 
-export function movement(instructions: string): number {
-	const houses = new Map<string, number>();
-	houses.set('0-0', 1);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BaseSolution } from '../index';
 
-	let x = 0;
-	let y = 0;
+export class Solution implements BaseSolution {
+	lines = '';
 
-	for (const step of instructions.split('')) {
-		switch (step) {
-		case '>':
-			++x;
-			break;
-		case '<':
-			--x;
-			break;
-		case '^':
-			++y;
-			break;
-		case 'v':
-			--y;
-			break;
+	constructor() {
+		if (process.env.NODE_ENV !== 'test') {
+			this.lines = readFileSync(join(__dirname, 'input.txt'), 'utf-8');
 		}
-
-		houses.set(`${x}-${y}`, 1);
 	}
 
-	return houses.size;
-}
+	first = (): number => {
+		return this.movement(this.lines);
+	};
 
-export function robotMovement(instructions: string): number {
-	const houses = new Map<string, number>();
-	houses.set('0-0', 2);
+	second = (): number => {
+		return this.robotMovement(this.lines);
+	};
 
-	let x = 0;
-	let y = 0;
-	let robotX = 0;
-	let robotY = 0;
-	let robot = false;
+	movement = (instructions: string): number => {
+		const houses = new Map<string, number>();
+		houses.set('0-0', 1);
 
-	for (const step of instructions.split('')) {
-		switch (step) {
-		case '>':
-			robot ? ++robotX : ++x;
-			break;
-		case '<':
-			robot ? --robotX : --x;
-			break;
-		case '^':
-			robot ? ++robotY : ++y;
-			break;
-		case 'v':
-			robot ? --robotY : --y;
-			break;
+		let x = 0;
+		let y = 0;
+
+		for (const step of instructions.split('')) {
+			switch (step) {
+			case '>':
+				++x;
+				break;
+			case '<':
+				--x;
+				break;
+			case '^':
+				++y;
+				break;
+			case 'v':
+				--y;
+				break;
+			}
+
+			houses.set(`${x}-${y}`, 1);
 		}
 
-		houses.set(`${x}-${y}`, 1);
-		houses.set(`${robotX}-${robotY}`, 1);
+		return houses.size;
+	};
 
-		robot = !robot;
-	}
+	robotMovement = (instructions: string): number => {
+		const houses = new Map<string, number>();
+		houses.set('0-0', 2);
 
-	return houses.size;
-}
+		let x = 0;
+		let y = 0;
+		let robotX = 0;
+		let robotY = 0;
+		let robot = false;
 
-export function results03(): void {
-	const instructions = readFileSync(join(__dirname, 'input.txt'), 'utf-8');
+		for (const step of instructions.split('')) {
+			switch (step) {
+			case '>':
+				robot ? ++robotX : ++x;
+				break;
+			case '<':
+				robot ? --robotX : --x;
+				break;
+			case '^':
+				robot ? ++robotY : ++y;
+				break;
+			case 'v':
+				robot ? --robotY : --y;
+				break;
+			}
 
-	console.log(`03: First result is:\t ${movement(instructions)}`);
-	console.log(`03: Second result is:\t ${robotMovement(instructions)}\n`);
+			houses.set(`${x}-${y}`, 1);
+			houses.set(`${robotX}-${robotY}`, 1);
+
+			robot = !robot;
+		}
+
+		return houses.size;
+	};
 }

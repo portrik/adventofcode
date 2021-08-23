@@ -1,4 +1,4 @@
-import { bow, paper } from './index';
+import { Solution } from './index';
 
 describe('02', () => {
 	test.each([
@@ -7,7 +7,7 @@ describe('02', () => {
 	])(
 		'%ix%ix%i Should Calculate Paper to %i',
 		(length, width, height, result) => {
-			expect(paper(length, width, height)).toBe(result);
+			expect(new Solution().paper(length, width, height)).toBe(result);
 		}
 	);
 
@@ -15,6 +15,6 @@ describe('02', () => {
 		[2, 3, 4, 34],
 		[1, 1, 10, 14],
 	])('%ix%ix%i Should Calculate Bow to %i', (length, width, height, result) => {
-		expect(bow(length, width, height)).toBe(result);
+		expect(new Solution().bow(length, width, height)).toBe(result);
 	});
 });

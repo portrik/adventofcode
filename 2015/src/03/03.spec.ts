@@ -1,4 +1,4 @@
-import { movement, robotMovement } from './index';
+import { Solution } from './index';
 
 describe('03', () => {
 	test.each([
@@ -6,7 +6,7 @@ describe('03', () => {
 		['^>v<', 4],
 		['^v^v^v^v^v', 2],
 	])('%s Should Deliver to %i Houses', (instructions, result) => {
-		expect(movement(instructions)).toBe(result);
+		expect(new Solution().movement(instructions)).toBe(result);
 	});
 
 	test.each([
@@ -14,6 +14,6 @@ describe('03', () => {
 		['^>v<', 3],
 		['^v^v^v^v^v', 11],
 	])('%s Should Deliver to %i Houses', (instructions, result) => {
-		expect(robotMovement(instructions)).toBe(result);
+		expect(new Solution().robotMovement(instructions)).toBe(result);
 	});
 });

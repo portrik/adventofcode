@@ -1,4 +1,4 @@
-import { Result08 } from './index';
+import { Solution } from './index';
 
 describe('08', () => {
 	test.each([
@@ -23,7 +23,7 @@ describe('08', () => {
 			expected: 26,
 		},
 	])('$tested Should Have Data Length of $expected', ({ tested, expected }) => {
-		expect(new Result08().countCharacters(tested)).toEqual(expected);
+		expect(new Solution().countCharacters(tested)).toEqual(expected);
 	});
 
 	test.each([
@@ -40,6 +40,6 @@ describe('08', () => {
 			expected: 15,
 		},
 	])('$tested Should Have Encoded Length $expected', ({ tested, expected }) => {
-		expect(new Result08().encodeCharacters(tested)).toEqual(expected);
+		expect(new Solution().encodeCharacters(tested)).toEqual(expected);
 	});
 });

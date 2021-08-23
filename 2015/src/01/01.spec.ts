@@ -1,4 +1,4 @@
-import { move, basement } from './index';
+import { Solution } from './index';
 
 describe('01', () => {
 	test.each([
@@ -6,13 +6,13 @@ describe('01', () => {
 		['(()(()(', 3],
 		[')())())', -3],
 	])('%s Should Move to Floor #%i', (instructions, floor) => {
-		expect(move(instructions)).toBe(floor);
+		expect(new Solution().move(instructions)).toBe(floor);
 	});
 
 	test.each([
 		[')', 1],
 		['()())', 5],
 	])('%s Should Reach Basement at Step #%i', (instructions, step) => {
-		expect(basement(instructions)).toBe(step);
+		expect(new Solution().basement(instructions)).toBe(step);
 	});
 });

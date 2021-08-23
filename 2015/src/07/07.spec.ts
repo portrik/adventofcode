@@ -1,4 +1,4 @@
-import { parseInstruction, Connection, Gate } from './index';
+import { Solution, Connection, Gate } from './index';
 
 describe('07', () => {
 	test.each([
@@ -27,7 +27,7 @@ describe('07', () => {
 			connection: new Connection('h', Gate.NOT, ['x']),
 		},
 	])('$line Should Create a Connection', ({ line, connection }) => {
-		expect(parseInstruction(line)).toEqual(connection);
+		expect(new Solution().parseInstruction(line)).toEqual(connection);
 	});
 
 	test('Connections Should Be Evaluated Correctly', () => {

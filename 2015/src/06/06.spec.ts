@@ -1,8 +1,4 @@
-import {
-	parseInstruction,
-	controlLights,
-	controlLightsBrightnes,
-} from './index';
+import { Solution } from './index';
 
 describe('06', () => {
 	test.each([
@@ -31,7 +27,7 @@ describe('06', () => {
 			},
 		},
 	])('$instruction Should Be Parsed Properly', ({ instruction, expected }) => {
-		expect(parseInstruction(instruction)).toEqual(expected);
+		expect(new Solution().parseInstruction(instruction)).toEqual(expected);
 	});
 
 	test.each([
@@ -45,7 +41,9 @@ describe('06', () => {
 				Array.from({ length: 1000 }, () => false)
 			);
 
-			controlLights(parseInstruction(instruction), lights);
+			const solution = new Solution();
+
+			solution.controlLights(solution.parseInstruction(instruction), lights);
 			const result = lights
 				.flat()
 				.map((val) => (val ? 1 : 0) as number)
@@ -65,7 +63,12 @@ describe('06', () => {
 				Array.from({ length: 1000 }, () => 0)
 			);
 
-			controlLightsBrightnes(parseInstruction(instruction), lights);
+			const solution = new Solution();
+
+			solution.controlLightsBrightness(
+				solution.parseInstruction(instruction),
+				lights
+			);
 			const result = lights.flat().reduce((acc, val) => (acc += val), 0);
 
 			expect(result).toBe(expected);

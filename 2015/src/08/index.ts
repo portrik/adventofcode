@@ -1,9 +1,10 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { Results } from '../index';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BaseSolution } from '../index';
 
-export class Result08 implements Results {
+export class Solution implements BaseSolution {
 	lines: string[] = [];
 
 	constructor() {
