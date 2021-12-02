@@ -5,7 +5,7 @@ import './02/day_02.dart';
 
 void main(List<String> arguments) async {
   try {
-    if (arguments.length < 1) {
+    if (arguments.isEmpty) {
       throw Exception('No day was selected!');
     }
 

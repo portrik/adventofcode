@@ -22,7 +22,7 @@ void main() {
     test('Secon Solver', () {
       final day = Day02();
 
-      var result = day.aimSumbarine([
+      var result = day.aimSubmarine([
         'forward 5',
         'down 5',
         'forward 8',

@@ -56,10 +56,10 @@ class Day02 implements Solution {
         .where((element) => element.trim().isNotEmpty)
         .toList();
 
-    return aimSumbarine(values).toString();
+    return aimSubmarine(values).toString();
   }
 
-  int aimSumbarine(List<String> instructions) {
+  int aimSubmarine(List<String> instructions) {
     var position = 0;
     var depth = 0;
     var aim = 0;
