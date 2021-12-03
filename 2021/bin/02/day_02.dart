@@ -1,21 +1,11 @@
 import 'dart:async';
-import 'dart:io';
-
-import 'package:path/path.dart' as path;
 
 import '../solution.dart';
 
 class Day02 implements Solution {
   @override
-  Future<String> first() async {
-    var contents = await File(path.join(
-            Platform.script.path
-                .substring(0, Platform.script.path.lastIndexOf('/')),
-            '02',
-            'input.txt'))
-        .readAsString();
-
-    var values = contents
+  Future<String> first(String input) async {
+    var values = input
         .split('\n')
         .where((element) => element.trim().isNotEmpty)
         .toList();
@@ -43,15 +33,8 @@ class Day02 implements Solution {
   }
 
   @override
-  Future<String> second() async {
-    var contents = await File(path.join(
-            Platform.script.path
-                .substring(0, Platform.script.path.lastIndexOf('/')),
-            '02',
-            'input.txt'))
-        .readAsString();
-
-    var values = contents
+  Future<String> second(String input) async {
+    var values = input
         .split('\n')
         .where((element) => element.trim().isNotEmpty)
         .toList();

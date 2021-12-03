@@ -1,6 +1,6 @@
 // A template for solution of each day
 abstract class Solution {
-  Future<String> first();
+  Future<String> first(String input);
 
-  Future<String> second();
+  Future<String> second(String input);
 }
