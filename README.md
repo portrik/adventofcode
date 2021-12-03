@@ -2,6 +2,10 @@
 
 If you hate easy and elegant solutions to problems, these solutions are just the thing for you.
 
+## 2021
+
+Year three. Throwing darts on the board at random. It's all tested, though.
+
 ## 2020
 
 Year two. I want to learn rust so that's why there's rust. There are some growing pains but it seems to be working great.
