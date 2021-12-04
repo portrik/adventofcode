@@ -7,6 +7,7 @@ import './solution.dart';
 import './01/day_01.dart';
 import './02/day_02.dart';
 import './03/day_03.dart';
+import './04/day_04.dart';
 
 Future<String> loadInput(String name) async {
   var inputFolder =
@@ -37,6 +38,9 @@ void main(List<String> arguments) async {
         break;
       case '03':
         solution = Day03();
+        break;
+      case '04':
+        solution = Day04();
         break;
       default:
         throw Exception('Unknown day "$day"!');
