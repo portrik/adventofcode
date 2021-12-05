@@ -6,6 +6,7 @@ import { Solution as Solution05 } from './05';
 import { Solution as Solution06 } from './06';
 import { Solution as Solution07 } from './07';
 import { Solution as Solution08 } from './08';
+import { Solution as Solution09 } from './09';
 
 export interface BaseSolution {
 	first: () => number;
@@ -39,6 +40,9 @@ case '07':
 	break;
 case '08':
 	solution = new Solution08();
+	break;
+case '09':
+	solution = new Solution09();
 	break;
 default:
 	throw new Error(`"${part}" is not a recognized problem!`);
