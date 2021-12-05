@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../solution.dart';
+import 'package:aoc2021/solution.dart';
 
 class Day02 implements Solution {
   @override

@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:path/path.dart' as path;
 
-import './solution.dart';
+import 'package:aoc2021/solution.dart';
 
-import './01/day_01.dart';
-import './02/day_02.dart';
-import './03/day_03.dart';
-import './04/day_04.dart';
+import 'package:aoc2021/01/day_01.dart';
+import 'package:aoc2021/02/day_02.dart';
+import 'package:aoc2021/03/day_03.dart';
+import 'package:aoc2021/04/day_04.dart';
 
 Future<String> loadInput(String name) async {
   var inputFolder =

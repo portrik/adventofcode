@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../../bin/02/day_02.dart';
+import 'package:aoc2021/02/day_02.dart';
 
 void main() {
   group('02', () {
@@ -19,7 +19,7 @@ void main() {
       expect(result, 150);
     });
 
-    test('Secon Solver', () {
+    test('Secod Solver', () {
       final day = Day02();
 
       var result = day.aimSubmarine([

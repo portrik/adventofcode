@@ -1,4 +1,4 @@
-import '../solution.dart';
+import 'package:aoc2021/solution.dart';
 
 class Board {
   List<List<num>> numbers;
