@@ -8,6 +8,7 @@ import 'package:aoc2021/01/day_01.dart';
 import 'package:aoc2021/02/day_02.dart';
 import 'package:aoc2021/03/day_03.dart';
 import 'package:aoc2021/04/day_04.dart';
+import 'package:aoc2021/05/day_05.dart';
 
 Future<String> loadInput(String name) async {
   var inputFolder =
@@ -42,6 +43,9 @@ void main(List<String> arguments) async {
       case '04':
         solution = Day04();
         break;
+      case '05':
+        solution = Day05();
+        break;
       default:
         throw Exception('Unknown day "$day"!');
     }
@@ -53,8 +57,9 @@ void main(List<String> arguments) async {
 
     var second = await solution.second(input);
     print('The second solution of day $day is: $second');
-  } catch (e) {
+  } catch (e, stacktrace) {
     print('The solution failed with an error!');
     print(e);
+    print(stacktrace);
   }
 }
