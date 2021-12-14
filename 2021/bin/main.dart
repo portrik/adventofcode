@@ -17,6 +17,7 @@ import 'package:aoc2021/10/day_10.dart';
 import 'package:aoc2021/11/day_11.dart';
 import 'package:aoc2021/12/day_12.dart';
 import 'package:aoc2021/13/day_13.dart';
+import 'package:aoc2021/14/day_14.dart';
 
 Future<String> loadInput(String name) async {
   var inputFolder =
@@ -77,6 +78,9 @@ void main(List<String> arguments) async {
         break;
       case '13':
         solution = Day13();
+        break;
+      case '14':
+        solution = Day14();
         break;
       default:
         throw Exception('Unknown day "$day"!');

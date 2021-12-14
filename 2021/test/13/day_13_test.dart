@@ -29,10 +29,6 @@ void main() {
         'fold along y=7',
       ]);
 
-      for (final row in result) {
-        print(row.map((e) => e ? '#' : '.').toList());
-      }
-
       expect(
           result
               .expand((element) => element)
@@ -41,10 +37,6 @@ void main() {
           17);
 
       result = day.fold(result, 5, true);
-
-      for (final row in result) {
-        print(row.map((e) => e ? '#' : '.').toList());
-      }
 
       expect(
           result
