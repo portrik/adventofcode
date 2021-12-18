@@ -65,11 +65,6 @@ class Day15 implements Solution {
 
         queue.add([coords[0], coords[1] + 1]);
       }
-
-      print(prices
-          .expand((element) => element)
-          .where((element) => element >= 9223372036854775807)
-          .length);
     }
 
     return prices.last.last;

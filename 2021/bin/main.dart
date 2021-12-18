@@ -4,29 +4,25 @@ import 'package:path/path.dart' as path;
 
 import 'package:aoc2021/solution.dart';
 
-import 'package:aoc2021/01/day_01.dart';
-import 'package:aoc2021/02/day_02.dart';
-import 'package:aoc2021/03/day_03.dart';
-import 'package:aoc2021/04/day_04.dart';
-import 'package:aoc2021/05/day_05.dart';
-import 'package:aoc2021/06/day_06.dart';
-import 'package:aoc2021/07/day_07.dart';
-import 'package:aoc2021/08/day_08.dart';
-import 'package:aoc2021/09/day_09.dart';
-import 'package:aoc2021/10/day_10.dart';
-import 'package:aoc2021/11/day_11.dart';
-import 'package:aoc2021/12/day_12.dart';
-import 'package:aoc2021/13/day_13.dart';
-import 'package:aoc2021/14/day_14.dart';
-import 'package:aoc2021/15/day_15.dart';
+import 'package:aoc2021/day_01.dart';
+import 'package:aoc2021/day_02.dart';
+import 'package:aoc2021/day_03.dart';
+import 'package:aoc2021/day_04.dart';
+import 'package:aoc2021/day_05.dart';
+import 'package:aoc2021/day_06.dart';
+import 'package:aoc2021/day_07.dart';
+import 'package:aoc2021/day_08.dart';
+import 'package:aoc2021/day_09.dart';
+import 'package:aoc2021/day_10.dart';
+import 'package:aoc2021/day_11.dart';
+import 'package:aoc2021/day_12.dart';
+import 'package:aoc2021/day_13.dart';
+import 'package:aoc2021/day_14.dart';
+import 'package:aoc2021/day_15.dart';
+import 'package:aoc2021/day_16.dart';
 
 Future<String> loadInput(String name) async {
-  var inputFolder =
-      Platform.script.path.substring(0, Platform.script.path.lastIndexOf('/'));
-  inputFolder = inputFolder.substring(0, inputFolder.lastIndexOf('/'));
-
-  var contents =
-      await File(path.join(inputFolder, 'input', '$name.txt')).readAsString();
+  var contents = await File(path.join('input', '$name.txt')).readAsString();
 
   return contents;
 }
@@ -85,6 +81,9 @@ void main(List<String> arguments) async {
         break;
       case '15':
         solution = Day15();
+        break;
+      case '16':
+        solution = Day16();
         break;
       default:
         throw Exception('Unknown day "$day"!');

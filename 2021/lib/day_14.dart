@@ -72,7 +72,6 @@ class Day14 implements Solution {
     }
 
     for (var i = 0; i < 40; ++i) {
-      print(i);
       result = constructPolymer(result, rules);
     }
 

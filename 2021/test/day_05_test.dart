@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:aoc2021/05/day_05.dart';
+import 'package:aoc2021/day_05.dart';
 
 void main() {
   group('06', () {

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:test/test.dart';
 
-import 'package:aoc2021/15/day_15.dart';
+import 'package:aoc2021/day_15.dart';
 
 void main() {
   group('15', () {
