@@ -3,7 +3,7 @@ let solution: AOC?
 
 switch problem {
 case "01":
-    solution = Problem01(name: "01")
+    solution = Problem01()
 default:
     fatalError("Problem \(problem) is not implemented!")
 }

@@ -1,9 +1,13 @@
 class Problem01: AOC {
-    override func first() -> String {
-        let up = input.components(separatedBy: "(").count - 1
-        let down = input.components(separatedBy: ")").count - 1
+    init() {
+        super.init(name: "01")
+    }
 
-        return String(up - down)
+    override func first() -> String {
+        let upSteps = input.components(separatedBy: "(").count - 1
+        let downSteps = input.components(separatedBy: ")").count - 1
+
+        return String(upSteps - downSteps)
     }
 
     override func second() -> String {

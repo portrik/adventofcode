@@ -3,7 +3,7 @@ import XCTest
 @testable import AOC2015
 
 class Problem01Tests: XCTestCase {
-    let solution = Problem01(name: "01")
+    let solution = Problem01()
 
     func testFirst() {
         let combinations = [("(())", 0), ("()()", 0), ("(((", 3), ("(()(()(", 3),
