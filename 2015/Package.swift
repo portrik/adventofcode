@@ -12,12 +12,12 @@ let package = Package(
             name: "AOC2015",
             dependencies: [],
             resources: [
-                .process("Resources"),
+                .process("Resources")
             ]
         ),
         .testTarget(
             name: "AOC2015Tests",
             dependencies: ["AOC2015"]
-        ),
+        )
     ]
 )

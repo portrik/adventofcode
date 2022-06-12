@@ -6,6 +6,8 @@ case "01":
     solution = Problem01()
 case "02":
     solution = Problem02()
+case "03":
+    solution = Problem03()
 default:
     fatalError("Problem \(problem) is not implemented!")
 }
