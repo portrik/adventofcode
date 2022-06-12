@@ -17,9 +17,7 @@ class AOC {
             }
 
             input = try String(contentsOf: fileURL!)
-        } catch {
-            print("Failed reading from file path URL, Error: " + error.localizedDescription)
-        }
+        } catch {}
     }
 
     func first() -> String {
