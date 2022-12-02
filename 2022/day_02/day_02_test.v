@@ -1,9 +1,9 @@
-module main
+module day_02
 
 import os
 
 fn test_solve_first() {
-	filename := './02/test.txt'
+	filename := os.join_path(os.getwd(), 'day_02', 'test.txt')
 	data := os.read_file(filename) or {
 		panic('Could not read test file $filename')
 		return
@@ -14,7 +14,7 @@ fn test_solve_first() {
 }
 
 fn test_solve_second() {
-	filename := './02/test.txt'
+	filename := os.join_path(os.getwd(), 'day_02', 'test.txt')
 	data := os.read_file(filename) or {
 		panic('Could not read test file $filename')
 		return

@@ -1,4 +1,4 @@
-module main
+module day_02
 
 import os
 
@@ -115,8 +115,8 @@ fn solve_second(input []string) int {
 	return score
 }
 
-fn main() {
-	filename := './02/input.txt'
+pub fn solve() {
+	filename := os.join_path(os.getwd(), 'day_02', 'input.txt')
 	data := os.read_file(filename) or {
 		panic('error reading file $filename')
 		return

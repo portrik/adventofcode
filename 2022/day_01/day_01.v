@@ -1,4 +1,4 @@
-module main
+module day_01
 
 import os
 
@@ -40,8 +40,8 @@ fn solve_second(input []string) int {
 	return values[values.len - 1] + values[values.len - 2] + values[values.len - 3]
 }
 
-fn main() {
-	filename := './01/input.txt'
+pub fn solve() {
+	filename := os.join_path(os.getwd(), 'day_01', 'input.txt')
 	data := os.read_file(filename) or {
 		panic('error reading file $filename')
 		return
