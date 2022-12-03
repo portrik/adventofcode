@@ -5,15 +5,23 @@ import cli { Command, Flag }
 import day_01
 import day_02
 
-fn solve_day(input Command) {
-	day := input.flags.get_string('day') or { panic('No day was provided!') }
+fn solve_day(command Command) {
+	day := command.flags.get_string('day') or { panic('No day was provided!') }
+
+	input_file := os.join_path(os.getwd(), 'day_$day', 'input.txt')
+	input := os.read_file(input_file) or {
+		panic('Unknown file path $input_file')
+		return
+	}
 
 	match day {
 		'01' {
-			day_01.solve()
+			println(day_01.solve_first(input))
+			println(day_01.solve_second(input))
 		}
 		'02' {
-			day_02.solve()
+			println(day_02.solve_first(input))
+			println(day_02.solve_second(input))
 		}
 		else {
 			panic('Selected day ($day) is not implemened!')

@@ -1,7 +1,5 @@
 module day_02
 
-import os
-
 enum Choice {
 	rock = 1
 	paper = 2
@@ -57,10 +55,14 @@ fn match_result(result string) Result {
 	}
 }
 
-fn solve_first(input []string) int {
+pub fn solve_first(input string) int {
 	mut score := 0
 
-	for line in input {
+	for line in input.split('\n') {
+		if line.len < 1 {
+			continue
+		}
+
 		round := line.split(' ')
 		choice := match_choice(round[1])
 		oponent := match_choice(round[0])
@@ -81,10 +83,14 @@ fn solve_first(input []string) int {
 	return score
 }
 
-fn solve_second(input []string) int {
+pub fn solve_second(input string) int {
 	mut score := 0
 
-	for line in input {
+	for line in input.split('\n') {
+		if line.len < 1 {
+			continue
+		}
+
 		round := line.split(' ')
 		oponent := match_choice(round[0])
 		result := match_result(round[1])
@@ -113,16 +119,4 @@ fn solve_second(input []string) int {
 	}
 
 	return score
-}
-
-pub fn solve() {
-	filename := os.join_path(os.getwd(), 'day_02', 'input.txt')
-	data := os.read_file(filename) or {
-		panic('error reading file $filename')
-		return
-	}
-	lines := data.split('\n').filter(it.len > 0)
-
-	println(solve_first(lines))
-	println(solve_second(lines))
 }

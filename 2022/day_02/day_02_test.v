@@ -8,9 +8,8 @@ fn test_solve_first() {
 		panic('Could not read test file $filename')
 		return
 	}
-	lines := data.split('\n').filter(it.len > 0)
 
-	assert solve_first(lines) == 15
+	assert solve_first(data) == 15
 }
 
 fn test_solve_second() {
@@ -19,7 +18,6 @@ fn test_solve_second() {
 		panic('Could not read test file $filename')
 		return
 	}
-	lines := data.split('\n').filter(it.len > 0)
 
-	assert solve_second(lines) == 12
+	assert solve_second(data) == 12
 }

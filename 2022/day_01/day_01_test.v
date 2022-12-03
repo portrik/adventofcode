@@ -8,9 +8,8 @@ fn test_solve_first() {
 		panic('error reading file $filename')
 		return
 	}
-	lines := data.split('\n')
 
-	assert solve_first(lines) == 24000
+	assert solve_first(data) == 24000
 }
 
 fn test_solve_second() {
@@ -19,7 +18,6 @@ fn test_solve_second() {
 		panic('error reading file $filename')
 		return
 	}
-	lines := data.split('\n')
 
-	assert solve_second(lines) == 45000
+	assert solve_second(data) == 45000
 }
