@@ -2,6 +2,10 @@
 
 If you hate easy and elegant solutions to problems, these solutions are just the thing for you.
 
+## 2022
+
+The year of ✌️.
+
 ## 2021
 
 Year three. Throwing darts on the board at random. It's all tested, though.
