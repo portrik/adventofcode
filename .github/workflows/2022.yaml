@@ -1,7 +1,9 @@
 name: 2022 Tests
 
 on:
-  - push
+  push:
+    paths:
+      - "2022/**"
 
 jobs:
   run:
@@ -17,6 +19,9 @@ jobs:
         with:
           v-version: latest
         id: v
+
+      - name: Switch to 2022 Directory
+        run: cd ./2022
 
       - name: Build Code 🔨
         run: v .
