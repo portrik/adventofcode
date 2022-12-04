@@ -23,6 +23,9 @@ jobs:
       - name: Switch to 2022 Directory
         run: cd ./2022
 
+      - name: Debug
+        run: ls
+
       - name: Build Code 🔨
         run: v .
 
