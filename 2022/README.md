@@ -19,5 +19,11 @@ v run ./ -d <DAY_NUMBER>
 The project also includes automated tests. These can be run separately for each day by running the following command.
 
 ```bash
-v ./day_<DAY_NUMBER>/day_<DAY_NUMBER>_test.v
+v test ./day_<DAY_NUMBER>/day_<DAY_NUMBER>_test.v
+```
+
+Or the test suite can be run as whole through following command.
+
+```bash
+v test .
 ```

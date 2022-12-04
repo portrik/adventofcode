@@ -1,0 +1,25 @@
+name: 2022 Tests
+
+on:
+  - push
+
+jobs:
+  run:
+    name: Test 2022 Solutions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🧾
+        uses: actions/checkout@v3
+
+      - name: Set Up V ✌️
+        uses: nocturlab/setup-vlang-action@v1
+        with:
+          v-version: latest
+        id: v
+
+      - name: Build Code 🔨
+        run: v .
+
+      - name: Run V Tests 🧪
+        run: v test .
