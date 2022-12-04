@@ -2,7 +2,7 @@
 
 If you hate easy and elegant solutions to problems, these solutions are just the thing for you.
 
-## 2022
+## 2022 [![2022 Tests](https://github.com/tehSIRius/adventofcode/actions/workflows/2022.yaml/badge.svg)](https://github.com/tehSIRius/adventofcode/actions/workflows/2022.yaml)
 
 The year of ✌️.
 
