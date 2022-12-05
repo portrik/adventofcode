@@ -1,11 +1,11 @@
 module day_03
 
-fn add_char(char rune) int {
-	if u8(char) >= 96 {
-		return u8(char) - 96
+fn add_char(value rune) int {
+	if u8(value) >= 96 {
+		return u8(value) - 96
 	}
 
-	return u8(char) - 38
+	return u8(value) - 38
 }
 
 pub fn solve_first(input string) int {

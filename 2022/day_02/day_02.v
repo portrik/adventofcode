@@ -1,5 +1,7 @@
 module day_02
 
+import arrays
+
 enum Choice {
 	rock = 1
 	paper = 2
@@ -56,18 +58,11 @@ fn match_result(result string) Result {
 }
 
 pub fn solve_first(input string) int {
-	mut score := 0
-
-	for line in input.split('\n') {
-		if line.len < 1 {
-			continue
-		}
-
-		round := line.split(' ')
+	return arrays.fold(input.split('\n').filter(it.len > 0).map(it.split(' ')).map(fn (round []string) int {
 		choice := match_choice(round[1])
 		oponent := match_choice(round[0])
 
-		score += int(choice)
+		mut score := int(choice)
 
 		if (oponent == Choice.rock && choice == Choice.paper)
 			|| (oponent == Choice.paper && choice == Choice.scissors)
@@ -78,20 +73,18 @@ pub fn solve_first(input string) int {
 			|| (oponent == Choice.scissors && choice == Choice.scissors) {
 			score += int(Result.draw)
 		}
-	}
 
-	return score
+		return score
+	}), 0, fn (acc int, elem int) int {
+		return acc + elem
+	})
 }
 
 pub fn solve_second(input string) int {
 	mut score := 0
+	rounds := input.split('\n').filter(it.len > 0).map(it.split(' '))
 
-	for line in input.split('\n') {
-		if line.len < 1 {
-			continue
-		}
-
-		round := line.split(' ')
+	for round in rounds {
 		oponent := match_choice(round[0])
 		result := match_result(round[1])
 
