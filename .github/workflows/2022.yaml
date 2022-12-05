@@ -9,6 +9,7 @@ jobs:
   run:
     name: Test 2022 Solutions
     runs-on: ubuntu-latest
+    working-directory: ./2022
 
     steps:
       - name: Checkout 🧾
@@ -19,12 +20,6 @@ jobs:
         with:
           v-version: latest
         id: v
-
-      - name: Switch to 2022 Directory
-        run: cd ./2022
-
-      - name: Debug
-        run: ls
 
       - name: Build Code 🔨
         run: v .
