@@ -6,8 +6,9 @@ import day_01
 import day_02
 import day_03
 import day_04
+import day_05
 
-fn solve_day(command Command) {
+fn solve_day(command Command)! {
 	day := command.flags.get_string('day') or { panic('No day was provided!') }
 
 	input_file := os.join_path(os.getwd(), 'day_$day', 'input.txt')
@@ -32,6 +33,10 @@ fn solve_day(command Command) {
 		'04' {
 			println(day_04.solve_first(input))
 			println(day_04.solve_second(input))
+		}
+		'05' {
+			println(day_05.solve_first(input))
+			println(day_05.solve_second(input))
 		}
 		else {
 			panic('Selected day ($day) is not implemened!')
