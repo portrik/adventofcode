@@ -1,6 +1,6 @@
 # 2022 - V
 
-[![2022 Tests](https://github.com/tehSIRius/adventofcode/actions/workflows/2022.yaml/badge.svg)](https://github.com/tehSIRius/adventofcode/actions/workflows/2022.yaml)
+[![2022 Tests](https://github.com/tehSIRius/adventofcode/actions/workflows/2022.yaml/badge.svg?branch=master)](https://github.com/tehSIRius/adventofcode/actions/workflows/2022.yaml)
 
 This year I wanted to go with `zig`. But the language proved to have a too steep learning curve for me. So `V` came to the rescue. Thank you, V! Very cool!
 
