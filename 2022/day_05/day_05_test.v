@@ -19,5 +19,5 @@ fn test_solve_second() {
 		return
 	}
 
-	assert solve_second(data) == 'CMZ'
+	assert solve_second(data) == 'MCD'
 }
