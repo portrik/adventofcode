@@ -9,7 +9,6 @@ jobs:
   run:
     name: Test 2022 Solutions
     runs-on: ubuntu-latest
-    working-directory: ./2022
 
     steps:
       - name: Checkout 🧾
@@ -22,7 +21,9 @@ jobs:
         id: v
 
       - name: Build Code 🔨
+        working-directory: ./2022
         run: v .
 
       - name: Run V Tests 🧪
+        working-directory: ./2022
         run: v test .
