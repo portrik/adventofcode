@@ -81,14 +81,11 @@ pub fn solve_first(input string) int {
 }
 
 pub fn solve_second(input string) int {
-	mut score := 0
-	rounds := input.split('\n').filter(it.len > 0).map(it.split(' '))
-
-	for round in rounds {
+	return arrays.fold(input.split('\n').filter(it.len > 0).map(it.split(' ')).map(fn (round []string) int {
 		oponent := match_choice(round[0])
 		result := match_result(round[1])
 
-		score += int(result)
+		mut score := int(result)
 
 		if result == Result.win {
 			if oponent == Choice.rock {
@@ -109,7 +106,9 @@ pub fn solve_second(input string) int {
 				score += int(Choice.paper)
 			}
 		}
-	}
 
-	return score
+		return score
+	}), 0, fn (acc int, elem int) int {
+		return acc + elem
+	})
 }
