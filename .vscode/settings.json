@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "2022",
-        "General"
+        "General",
+        "2019"
     ]
 }
