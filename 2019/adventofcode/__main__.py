@@ -4,6 +4,7 @@ import os
 import sys
 
 from . import day_01
+from . import day_02
 
 if __name__ == "__main__":
     n = sys.argv[1]
@@ -19,6 +20,9 @@ if __name__ == "__main__":
         case "01":
             first = f"{day_01.solve_first(day_input)}"
             second = f"{day_01.solve_second(day_input)}"
+        case "02":
+            first = f"{day_02.solve_first(day_input, True)}"
+            second = f"{day_02.solve_second(day_input)}"
         case other:
             raise RuntimeError(f"Unknown day {n}!")
 
