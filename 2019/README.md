@@ -1,5 +1,7 @@
 # 2019 - Python
 
+[![2019 Tests 🧪](https://github.com/tehSIRius/adventofcode/actions/workflows/2019.yml/badge.svg?branch=master)](https://github.com/tehSIRius/adventofcode/actions/workflows/2019.yml)
+
 ## Setup
 
 ```sh
