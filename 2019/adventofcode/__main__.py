@@ -12,9 +12,15 @@ if __name__ == "__main__":
     with open(input_path, encoding="UTF-8") as file:
         day_input = file.read()
 
+    first = "Not implemented!"
+    second = "Not implemented!"
+
     match n:
         case "01":
-            print(day_01.solve_first(day_input))
-            print(day_01.solve_second(day_input))
+            first = f"{day_01.solve_first(day_input)}"
+            second = f"{day_01.solve_second(day_input)}"
         case other:
             raise RuntimeError(f"Unknown day {n}!")
+
+    print(f"First Solution:\t\t{first}")
+    print(f"Second Solution:\t{second}")
