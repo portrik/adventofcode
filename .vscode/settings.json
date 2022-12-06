@@ -3,5 +3,6 @@
         "2022",
         "General",
         "2019"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }

@@ -1,0 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "advent_of_code_2019"
+version = "0.6.0"
+
+[tool.pytest.ini_options]
+testpaths = ["**/test_*"]
