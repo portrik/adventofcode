@@ -7,6 +7,7 @@ import day_02
 import day_03
 import day_04
 import day_05
+import day_06
 
 fn solve_day(command Command)! {
 	day := command.flags.get_string('day') or { panic('No day was provided!') }
@@ -37,6 +38,10 @@ fn solve_day(command Command)! {
 		'05' {
 			println(day_05.solve_first(input))
 			println(day_05.solve_second(input))
+		}
+		'06' {
+			println(day_06.solve_first(input))
+			println(day_06.solve_second(input))
 		}
 		else {
 			panic('Selected day ($day) is not implemened!')
