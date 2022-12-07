@@ -8,6 +8,7 @@ import day_03
 import day_04
 import day_05
 import day_06
+import day_07
 
 fn solve_day(command Command)! {
 	day := command.flags.get_string('day') or { panic('No day was provided!') }
@@ -18,35 +19,45 @@ fn solve_day(command Command)! {
 		return
 	}
 
+	mut first := "Not implemented!"
+	mut second := "Not implemented!"
+
 	match day {
 		'01' {
-			println(day_01.solve_first(input))
-			println(day_01.solve_second(input))
+			first = day_01.solve_first(input).str()
+			second = day_01.solve_second(input).str()
 		}
 		'02' {
-			println(day_02.solve_first(input))
-			println(day_02.solve_second(input))
+			first = day_02.solve_first(input).str()
+			second = day_02.solve_second(input).str()
 		}
 		'03' {
-			println(day_03.solve_first(input))
-			println(day_03.solve_second(input))
+			first = day_03.solve_first(input).str()
+			second = day_03.solve_second(input).str()
 		}
 		'04' {
-			println(day_04.solve_first(input))
-			println(day_04.solve_second(input))
+			first = day_04.solve_first(input).str()
+			second = day_04.solve_second(input).str()
 		}
 		'05' {
-			println(day_05.solve_first(input))
-			println(day_05.solve_second(input))
+			first = day_05.solve_first(input).str()
+			second = day_05.solve_second(input).str()
 		}
 		'06' {
-			println(day_06.solve_first(input))
-			println(day_06.solve_second(input))
+			first = day_06.solve_first(input).str()
+			second = day_06.solve_second(input).str()
+		}
+		'07' {
+			first = day_07.solve_first(input).str()
+			second = day_07.solve_second(input).str()
 		}
 		else {
 			panic('Selected day ($day) is not implemened!')
 		}
 	}
+
+	println('First solution:\t$first')
+	println('Second soluton:\t$second')
 }
 
 fn main() {
