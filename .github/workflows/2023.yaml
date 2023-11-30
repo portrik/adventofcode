@@ -1,0 +1,29 @@
+name: 2023 Tests
+
+on:
+  push:
+    paths:
+      - "2023/**"
+
+jobs:
+  run:
+    name: Test 2023 Solutions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🧾
+        uses: actions/checkout@v3
+
+      - name: Set Up Nim
+        uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: '2.0.0' # default is 'stable'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build 🔨
+        working-directory: ./2023
+        run: nimble build -Y
+
+      - name: Run Tests 🧪
+        working-directory: ./2023
+        run: nimble test -Y

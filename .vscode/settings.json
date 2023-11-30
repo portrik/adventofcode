@@ -2,7 +2,8 @@
     "conventionalCommits.scopes": [
         "2022",
         "General",
-        "2019"
+        "2019",
+        "2023"
     ],
     "python.analysis.typeCheckingMode": "basic"
 }
