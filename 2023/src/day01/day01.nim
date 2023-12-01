@@ -1,48 +1,42 @@
 import std/strutils
+import std/sequtils
 
 const puzzleInput = staticRead("input.txt")
 const wordDigits = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 proc solvePartOne*(input: string = puzzleInput): Natural =
-    var sum: Natural = 0
+    let numbers = splitLines(input)
+                    .filterIt(not isEmptyOrWhitespace(it))
+                    .mapIt(it.filter(isDigit))
+                    .mapIt(parseInt(it[0] & it[^1]))
 
-    for line in splitLines(input):
-        if line.isEmptyOrWhitespace():
+    return foldl(numbers, a + b, 0)
+
+proc mapLineToNumbers(line: string): Natural =
+    var digits = ""
+
+    var index = 0
+    while index < line.len():
+        if isDigit(line[index]):
+            digits.add(line[index])
+            index += 1
+            continue
+
+        for wordIndex, word in wordDigits:
+            if index + word.len() - 1 >= line.len() or line[index..(index + word.len() - 1)] != word:
+                continue
+
+            digits.add($(wordIndex + 1))
+            index += word.len() - 2
             break
 
-        var currentValue: string = ""
-        for character in line:
-            try:
-                let digit = parseInt($character)
-                currentValue.add($digit)
-            except ValueError: discard
+        index += 1
 
-        sum += parseInt(currentValue[0] & currentValue[^1])
-
-    return sum
+    return parseInt(digits[0] & digits[^1])
 
 proc solvePartTwo*(input: string = puzzleInput): Natural =
-    var sum: Natural = 0
+    let numbers = splitLines(input)
+                    .filterIt(not isEmptyOrWhitespace(it))
+                    .map(mapLineToNumbers)
 
-    for line in splitLines(input):
-        if line.isEmptyOrWhitespace():
-            break
-
-        var currentValue: string = ""
-        var index: Natural = 0
-        while index < line.len():
-            try:
-                let digit = parseInt($line[index])
-                currentValue.add($digit)
-            except ValueError:
-                for wordIndex, word in wordDigits:
-                    if index + word.len() - 1 < line.len() and line[index..index + word.len() - 1] == word:
-                        currentValue.add($(wordIndex + 1))
-                        index += word.len() - 2
-                        break
-            finally:
-                index += 1
-
-        sum += parseInt(currentValue[0] & currentValue[^1])
-
-    return sum
+    return foldl(numbers, a + b, 0)
