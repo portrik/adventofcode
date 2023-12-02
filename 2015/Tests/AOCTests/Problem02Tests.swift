@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import AOC2015
+@testable import AOC
 
 class Problem02Tests: XCTestCase {
     let solution = Problem02()

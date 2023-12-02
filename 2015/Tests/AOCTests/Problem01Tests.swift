@@ -1,12 +1,13 @@
 import XCTest
 
-@testable import AOC2015
+@testable import AOC
 
-class Problem03Tests: XCTestCase {
-    let solution = Problem03()
+class Problem01Tests: XCTestCase {
+    let solution = Problem01()
 
     func testFirst() {
-        let combinations = [(">", 2), ("^>v<", 4), ("^v^v^v^v^v", 2)]
+        let combinations = [("(())", 0), ("()()", 0), ("(((", 3), ("(()(()(", 3),
+                            ("))(((((", 3), ("())", -1), ("))(", -1), (")))", -3), (")())())", -3)]
 
         for combo in combinations {
             solution.input = combo.0
@@ -15,7 +16,7 @@ class Problem03Tests: XCTestCase {
     }
 
     func testSecond() {
-        let combinations = [("^v", 3), ("^>v<", 3), ("^v^v^v^v^v", 11)]
+        let combinations = [(")", 1), ("()())", 5)]
 
         for combo in combinations {
             solution.input = combo.0

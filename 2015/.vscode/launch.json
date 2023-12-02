@@ -1,40 +1,64 @@
 {
 	"configurations": [
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug 2015",
-			"program": "${workspaceFolder:2015}/.build/debug/2015",
-			"args": [],
-			"cwd": "${workspaceFolder:2015}",
-			"preLaunchTask": "swift: Build Debug 2015"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Release 2015",
-			"program": "${workspaceFolder:2015}/.build/release/2015",
-			"args": [],
-			"cwd": "${workspaceFolder:2015}",
-			"preLaunchTask": "swift: Build Release 2015"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug AOC2015",
-			"program": "${workspaceFolder:2015}/.build/debug/AOC2015",
-			"args": [],
-			"cwd": "${workspaceFolder:2015}",
-			"preLaunchTask": "swift: Build Debug AOC2015"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Release AOC2015",
-			"program": "${workspaceFolder:2015}/.build/release/AOC2015",
-			"args": [],
-			"cwd": "${workspaceFolder:2015}",
-			"preLaunchTask": "swift: Build Release AOC2015"
-		}
-	]
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug 2015",
+            "program": "${workspaceFolder:2015}/.build/debug/2015",
+            "args": [],
+            "cwd": "${workspaceFolder:2015}",
+            "preLaunchTask": "swift: Build Debug 2015"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release 2015",
+            "program": "${workspaceFolder:2015}/.build/release/2015",
+            "args": [],
+            "cwd": "${workspaceFolder:2015}",
+            "preLaunchTask": "swift: Build Release 2015"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug AOC2015",
+            "program": "${workspaceFolder:2015}/.build/debug/AOC2015",
+            "args": [],
+            "cwd": "${workspaceFolder:2015}",
+            "preLaunchTask": "swift: Build Debug AOC2015"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release AOC2015",
+            "program": "${workspaceFolder:2015}/.build/release/AOC2015",
+            "args": [],
+            "cwd": "${workspaceFolder:2015}",
+            "preLaunchTask": "swift: Build Release AOC2015"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:2015}",
+            "name": "Debug AOC",
+            "program": "${workspaceFolder:2015}/.build/debug/AOC",
+            "preLaunchTask": "swift: Build Debug AOC"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:2015}",
+            "name": "Release AOC",
+            "program": "${workspaceFolder:2015}/.build/release/AOC",
+            "preLaunchTask": "swift: Build Release AOC"
+        }
+    ]
 }

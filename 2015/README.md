@@ -1,3 +1,7 @@
 # 2015
 
-A description of this package.
+Use the following command to run the specified day:
+
+```fish
+swift run AOC $DAY_NUMBER
+```

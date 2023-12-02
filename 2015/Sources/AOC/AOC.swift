@@ -1,6 +1,6 @@
 import Foundation
 
-enum MyError: Error {
+enum MissingInputError: Error {
     case runtimeError(String)
 }
 
@@ -13,7 +13,7 @@ class AOC {
 
         do {
             if fileURL == nil {
-                throw MyError.runtimeError("Could not load file!")
+                throw MissingInputError.runtimeError("Could not load file!")
             }
 
             input = try String(contentsOf: fileURL!)
