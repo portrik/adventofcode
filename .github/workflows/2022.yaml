@@ -1,4 +1,4 @@
-name: 2022 Tests
+name: 2022 Tests 🧪
 
 on:
   push:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout 🧾
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set Up V ✌️
-        uses: nocturlab/setup-vlang-action@v1
+        uses: nocturlab/setup-vlang-action@v1.3
         with:
           v-version: latest
         id: v

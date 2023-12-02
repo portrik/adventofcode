@@ -1,0 +1,26 @@
+name: 2015 Tests 🧪
+
+on:
+  push:
+    paths:
+      - "2015/**"
+
+jobs:
+  run:
+    name: Test 2015 Solutions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🧾
+        uses: actions/checkout@v4
+
+      - name: Set Up Swift
+        uses: swift-actions/setup-swift@v1
+
+      - name: Build 🔨
+        working-directory: ./2015
+        run: swift build
+
+      - name: Run Tests 🧪
+        working-directory: ./2015
+        run: swift test
