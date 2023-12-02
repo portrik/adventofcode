@@ -2,12 +2,12 @@
 
 For tests, run
 
-```bash
+```fish
 nimble test
 ```
 
 For each day, run
 
-```bash
+```fish
 nimble run advent_of_code $DAY_NUMBER
 ```

@@ -18,6 +18,14 @@ Year three. Throwing darts on the board at random. It's all tested, though.
 
 Year two. I want to learn rust so that's why there's rust. There are some growing pains but it seems to be working great.
 
-## 2019 [![2019 Tests](https://github.com/tehSIRius/adventofcode/actions/workflows/2019.yaml/badge.svg?branch=master)](https://github.com/tehSIRius/adventofcode/actions/workflows/2019.yaml)
+## 2019 [![2019 Tests 🧪](https://github.com/portrik/adventofcode/actions/workflows/2019.yml/badge.svg)](https://github.com/portrik/adventofcode/actions/workflows/2019.yml)
 
 My first year. Tried it with python. Did not get too far. Doing a remix in 2022.
+
+## 2016
+
+GO experimenting.
+
+## 2015 [![2015 Tests 🧪](https://github.com/portrik/adventofcode/actions/workflows/2015.yaml/badge.svg)](https://github.com/portrik/adventofcode/actions/workflows/2015.yaml)
+
+Trying out Swift here.
