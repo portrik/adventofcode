@@ -1,6 +1,6 @@
 import unittest
 
-import day01/day01
+import day01
 
 const testFile = staticRead("input/day01.txt")
 const testFileTwo = staticRead("input/day01_02.txt")

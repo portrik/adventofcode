@@ -1,15 +1,25 @@
 import std/os
 import std/strformat
+import std/strutils
 
-import day01/day01
+import day01 as day01
+import day02 as day02
 
+const days = [
+    [day01.solvePartOne, day01.solvePartTwo],
+    [day02.solvePartOne, day02.solvePartTwo]]
 
 when isMainModule:
-    let day = paramStr(1)
+    let parameter = paramStr(1)
 
-    case day:
-        of "1":
-            echo fmt"Part One: {solvePartOne()}"
-            echo fmt"Part Two: {solvePartTwo()}"
-        else:
-            echo fmt"Day {day} is not implemented."
+    var index = high(int)
+    try:
+        index = parseInt(parameter) - 1
+    except Exception: discard
+
+    doAssert(index < days.len(), fmt"Unknown day '{parameter}'!")
+
+    let input = readFile(fmt"src/input/{index + 1}.txt")
+
+    echo fmt"Part one: {days[index][0](input)}"
+    echo fmt"Part two: {days[index][1](input)}"
