@@ -4,7 +4,7 @@ import std/sequtils
 const wordDigits = ["one", "two", "three", "four", "five", "six", "seven",
         "eight", "nine"]
 
-proc solvePartOne*(input: string): int =
+func solvePartOne*(input: string): int =
     let numbers = splitLines(input)
         .filterIt(not isEmptyOrWhitespace(it))
         .mapIt(it.filter(isDigit))
@@ -12,7 +12,7 @@ proc solvePartOne*(input: string): int =
 
     return foldl(numbers, a + b, 0)
 
-proc mapLineToNumbers(line: string): int =
+func mapLineToNumbers(line: string): int =
     var digits = ""
 
     var index = 0
@@ -35,7 +35,7 @@ proc mapLineToNumbers(line: string): int =
 
     return parseInt(digits[0] & digits[^1])
 
-proc solvePartTwo*(input: string): int =
+func solvePartTwo*(input: string): int =
     let numbers = splitLines(input)
         .filterIt(not isEmptyOrWhitespace(it))
         .map(mapLineToNumbers)

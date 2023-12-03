@@ -4,14 +4,14 @@ import std/sequtils
 const colors = ["red", "green", "blue"]
 const maxValues = [12, 13, 14]
 
-proc isPossibleConfiguration(configuration: array[3, int]): bool =
+func isPossibleConfiguration(configuration: array[3, int]): bool =
     for index, value in maxValues:
         if configuration[index] > value:
             return false
 
     return true
 
-proc gameToConfiguration(line: string): array[3, int] =
+func gameToConfiguration(line: string): array[3, int] =
     let rounds = line.split(":")[1]
         .split(";")
         .mapIt(it
@@ -31,10 +31,10 @@ proc gameToConfiguration(line: string): array[3, int] =
 
     return configuration
 
-proc gameToId(game: string): int =
+func gameToId(game: string): int =
     return parseInt(game.split(":")[0].split(" ")[^1])
 
-proc solvePartOne*(input: string): int =
+func solvePartOne*(input: string): int =
     let numbers = splitLines(input)
         .filterIt(not isEmptyOrWhitespace(it))
         .filterIt(isPossibleConfiguration(gameToConfiguration(it)))
@@ -42,7 +42,7 @@ proc solvePartOne*(input: string): int =
 
     return foldl(numbers, a + b, 0)
 
-proc solvePartTwo*(input: string): int =
+func solvePartTwo*(input: string): int =
     let configurations = splitLines(input)
         .filterIt(not isEmptyOrWhitespace(it))
         .map(gameToConfiguration)

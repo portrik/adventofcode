@@ -10,10 +10,10 @@ type
     Schema = seq[string]
     Condition = (character: char) -> bool
 
-proc isEnginePart(character: char): bool =
+func isEnginePart(character: char): bool =
     return character != '.' and not isDigit(character)
 
-proc isRatiodGear(character: char): bool =
+func isRatiodGear(character: char): bool =
     return character == '*'
 
 proc getEnginePart(schema: Schema, position: Position, part: string, condition: Condition): Option[Gear] =
