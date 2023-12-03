@@ -1,29 +1,51 @@
+import sugar
+
 import std/options
 import std/sequtils
 import std/strutils
 
-type Ratio = tuple[value: int, x: int, y: int]
+type
+    Position = tuple[x: int, y: int]
+    Gear = tuple[value: int, position: Position]
+    Schema = seq[string]
+    Condition = (character: char) -> bool
 
-proc toEnginePart(schema: seq[string], startX: int, startY: int,
-        value: string): int =
-    let minX = (if startX > 0: startX - 1 else: startX)
-    let maxX = (if startX < schema.len() - 1: startX + 1 else: startX)
-    let minY = (if startY > 0: startY - 1 else: startY)
-    let maxY = (if (startY + value.len()) < schema[startX].len(): startY +
-            value.len() else: startY + value.len() - 1)
+proc isEnginePart(character: char): bool =
+    return character != '.' and not isDigit(character)
+
+proc isRatiodGear(character: char): bool =
+    return character == '*'
+
+proc getEnginePart(schema: Schema, position: Position, part: string, condition: Condition): Option[Gear] =
+    var
+        minX = position.x
+        maxX = position.x
+        minY = position.y
+        maxY = position.y + part.len() - 1
+
+    if position.x > 0:
+        minX -= 1
+
+    if position.x < schema.len() - 1:
+        maxX += 1
+
+    if position.y > 0:
+        minY -= 1
+
+    if (position.y + part.len()) < schema[position.x].len():
+        maxY += 1
 
     for x in minX..maxX:
         for y in minY..maxY:
-            if schema[x][y] != '.' and not isDigit(schema[x][y]):
-                return parseInt(value)
+            if condition(schema[x][y]):
+                return some((value: parseInt(part), position: (x: x, y: y)))
 
-    return 0
+    return none(Gear)
 
 proc solvePartOne*(input: string): int =
     var sum: int = 0
 
-    let schema: seq[string] = splitLines(input)
-        .filterIt(not isEmptyOrWhitespace(it))
+    let schema: seq[string] = splitLines(input).filterIt(not isEmptyOrWhitespace(it))
 
     for row in 0..schema.len() - 1:
         var currentValue: string = ""
@@ -32,35 +54,21 @@ proc solvePartOne*(input: string): int =
             if isDigit(schema[row][column]):
                 currentValue.add($schema[row][column])
 
-            if (not isDigit(schema[row][column]) or
-                    column == schema[row].len() - 1) and currentValue != "":
-                sum += toEnginePart(schema, row, column - currentValue.len(), currentValue)
+            let isEndOfNumber = not isDigit(schema[row][column])
+            let isEndOfLine = column == schema[row].len() - 1
+            if (isEndOfNumber or isEndOfLine) and currentValue != "":
+                let part = getEnginePart(schema, (x: row, y: column - currentValue.len()), currentValue, isEnginePart)
+                sum += (if part.isSome(): part.get().value else: 0)
                 currentValue = ""
 
     return sum
 
-proc toGearRatio(schema: seq[string], startX: int, startY: int,
-        value: string): Option[Ratio] =
-    let minX = (if startX > 0: startX - 1 else: startX)
-    let maxX = (if startX < schema.len() - 1: startX + 1 else: startX)
-    let minY = (if startY > 0: startY - 1 else: startY)
-    let maxY = (if (startY + value.len()) < schema[startX].len(): startY +
-            value.len() else: startY + value.len() - 1)
-
-    for x in minX..maxX:
-        for y in minY..maxY:
-            if schema[x][y] == '*':
-                return some((value: parseInt(value), x: x, y: y))
-
-    return none(Ratio)
-
 proc solvePartTwo*(input: string): int =
     var sum: int = 0
 
-    let schema: seq[string] = splitLines(input)
-        .filterIt(not isEmptyOrWhitespace(it))
+    let schema: seq[string] = splitLines(input).filterIt(not isEmptyOrWhitespace(it))
 
-    var ratios: seq[Ratio] = @[]
+    var ratios: seq[Gear] = @[]
     for row in 0..schema.len() - 1:
         var currentValue: string = ""
 
@@ -68,17 +76,17 @@ proc solvePartTwo*(input: string): int =
             if isDigit(schema[row][column]):
                 currentValue.add($schema[row][column])
 
-            if (not isDigit(schema[row][column]) or
-                    column == schema[row].len() - 1) and currentValue != "":
-                let possibleRatio = toGearRatio(schema, row, column -
-                        currentValue.len(), currentValue)
+            let isEndOfNumber = not isDigit(schema[row][column])
+            let isEndOfLine = column == schema[row].len() - 1
+            if (isEndOfNumber or isEndOfLine) and currentValue != "":
+                let possibleRatio = getEnginePart(schema, (x: row, y: column - currentValue.len()), currentValue, isRatiodGear)
                 currentValue = ""
 
                 if possibleRatio.isNone():
                     continue
 
                 let ratio = possibleRatio.get()
-                let match = ratios.filterIt(it.x == ratio.x and it.y == ratio.y)
+                let match = ratios.filterIt(it.position == ratio.position)
 
                 if match.len() < 1:
                     ratios.add(ratio)
