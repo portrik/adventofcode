@@ -4,10 +4,12 @@ import std/strutils
 
 import day01 as day01
 import day02 as day02
+import day03 as day03
 
 const days = [
     [day01.solvePartOne, day01.solvePartTwo],
-    [day02.solvePartOne, day02.solvePartTwo]]
+    [day02.solvePartOne, day02.solvePartTwo],
+    [day03.solvePartOne, day03.solvePartTwo]]
 
 when isMainModule:
     let parameter = paramStr(1)
