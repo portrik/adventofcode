@@ -5,6 +5,7 @@ import std/strutils
 import day01 as day01
 import day02 as day02
 import day03 as day03
+import day04 as day04
 
 # To use with solutions that have side effects, mainly for usage of Option.
 # https://forum.nim-lang.org/t/3318#20981
@@ -13,7 +14,8 @@ type Solution = proc (input: string): int{.nimcall, noSideEffect}
 const days: seq[array[2, Solution]] = @[
     [day01.solvePartOne, day01.solvePartTwo],
     [day02.solvePartOne, day02.solvePartTwo],
-    [cast[Solution](day03.solvePartOne), cast[Solution](day03.solvePartTwo)]]
+    [cast[Solution](day03.solvePartOne), cast[Solution](day03.solvePartTwo)],
+    [day04.solvePartOne,day04.solvePartTwo]]
 
 when isMainModule:
     let parameter = paramStr(1)
