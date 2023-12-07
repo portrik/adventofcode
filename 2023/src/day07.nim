@@ -11,20 +11,7 @@ const handStrength = [Hand.FiveOfAKind, Hand.FourOfAKind, Hand.FullHouse,
 const cardStrength = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
 const jokerCardStrength = ['A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J']
 
-func getHandType(cards: string): Hand =
-    var replaceable = cards
-    var counts: seq[int] = @[]
-
-    for character in cards:
-        let count = replaceable.count(character)
-        if count < 1:
-            continue
-
-        counts.add(count)
-        replaceable = replaceable.replace($character)
-
-    counts.sort(SortOrder.Descending)
-
+func cardCounstToHand(counts: seq[int]): Hand =
     if counts[0] == 5:
         return Hand.FiveOfAKind
 
@@ -45,44 +32,44 @@ func getHandType(cards: string): Hand =
 
     return Hand.HighCard
 
-func compareCards(left: CardHand, right: CardHand): int =
+func compareHands(left: CardHand, right: CardHand, cardStrengths: array[0..12, char]): int =
     let
         leftStrength = handStrength.find(left.handType)
         rightStrength = handStrength.find(right.handType)
 
     if leftStrength < rightStrength:
         return 1
-
-    if rightStrength < leftStrength:
+    elif rightStrength < leftStrength:
         return 0
 
-    if leftStrength == rightStrength:
-        for index, card in left.cards:
-            let
-                leftCard = cardStrength.find(card)
-                rightCard = cardStrength.find(right.cards[index])
+    for index, card in left.cards:
+        let
+            leftCard = cardStrengths.find(card)
+            rightCard = cardStrengths.find(right.cards[index])
 
-            if leftCard == rightCard:
-                continue
+        if leftCard == rightCard:
+            continue
 
-            if leftCard < rightCard:
-                return 1
+        if leftCard < rightCard:
+            return 1
 
-            return 0
+        return 0
 
-func solvePartOne*(input: string):int =
-    let cardHands: seq[CardHand] = input
-                            .splitLines()
-                            .filterIt(not isEmptyOrWhitespace(it))
-                            .mapIt(it.split(" ").filterIt(not isEmptyOrWhitespace(it)))
-                            .mapIt((cards: it[0], bid: parseInt(it[1]), handType: getHandType(it[0])))
-                            .sorted(compareCards)
+func getHandType(cards: string): Hand =
+    var replaceable = cards
+    var counts: seq[int] = @[]
 
-    var winnings = 0
-    for index, hand in cardHands:
-        winnings += (index + 1) * hand.bid
+    for character in cards:
+        let count = replaceable.count(character)
+        if count < 1:
+            continue
 
-    return winnings
+        counts.add(count)
+        replaceable = replaceable.replace($character)
+
+    counts.sort(SortOrder.Descending)
+
+    return cardCounstToHand(counts)
 
 func getJokerHandType(cards: string): Hand =
     var replaceable = cards
@@ -99,54 +86,25 @@ func getJokerHandType(cards: string): Hand =
     counts.sort(SortOrder.Descending)
 
     let jokers = cards.count('J')
-    if jokers > 0 and jokers != 5:
+    if jokers > 0 and jokers < 5:
         counts.delete(counts.find(jokers))
         counts[0] += jokers
 
-    if counts[0] == 5:
-        return Hand.FiveOfAKind
+    return cardCounstToHand(counts)
 
-    if counts[0] == 4:
-        return Hand.FourOfAKind
+func solvePartOne*(input: string):int =
+    let cardHands: seq[CardHand] = input
+                            .splitLines()
+                            .filterIt(not isEmptyOrWhitespace(it))
+                            .mapIt(it.split(" ").filterIt(not isEmptyOrWhitespace(it)))
+                            .mapIt((cards: it[0], bid: parseInt(it[1]), handType: getHandType(it[0])))
+                            .sorted(proc (left: CardHand, right: CardHand): int = compareHands(left, right, cardStrength))
 
-    if counts[0] == 3:
-        if counts[1] == 2:
-            return Hand.FullHouse
+    var winnings = 0
+    for index, hand in cardHands:
+        winnings += (index + 1) * hand.bid
 
-        return Hand.ThreeOfAKind
-
-    if counts[0] == 2:
-        if counts[1] == 2:
-            return Hand.TwoPair
-
-        return Hand.OnePair
-
-    return Hand.HighCard
-
-func compareJokerCards(left: CardHand, right: CardHand): int =
-    let
-        leftStrength = handStrength.find(left.handType)
-        rightStrength = handStrength.find(right.handType)
-
-    if leftStrength < rightStrength:
-        return 1
-
-    if rightStrength < leftStrength:
-        return 0
-
-    if leftStrength == rightStrength:
-        for index, card in left.cards:
-            let
-                leftCard = jokerCardStrength.find(card)
-                rightCard = jokerCardStrength.find(right.cards[index])
-
-            if leftCard == rightCard:
-                continue
-
-            if leftCard < rightCard:
-                return 1
-
-            return 0
+    return winnings
 
 func solvePartTwo*(input: string): int =
     let cardHands: seq[CardHand] = input
@@ -154,7 +112,7 @@ func solvePartTwo*(input: string): int =
                             .filterIt(not isEmptyOrWhitespace(it))
                             .mapIt(it.split(" ").filterIt(not isEmptyOrWhitespace(it)))
                             .mapIt((cards: it[0], bid: parseInt(it[1]), handType: getJokerHandType(it[0])))
-                            .sorted(compareJokerCards)
+                            .sorted(proc (left: CardHand, right: CardHand): int = compareHands(left, right, jokerCardStrength))
 
     var winnings = 0
     for index, hand in cardHands:
