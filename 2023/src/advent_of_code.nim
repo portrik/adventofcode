@@ -9,6 +9,7 @@ import day04 as day04
 import day05 as day05
 import day06 as day06
 import day07 as day07
+import day08 as day08
 
 # To use with solutions that have side effects, mainly for usage of Option.
 # https://forum.nim-lang.org/t/3318#20981
@@ -21,7 +22,8 @@ const days: seq[array[2, Solution]] = @[
     [day04.solvePartOne,day04.solvePartTwo],
     [day05.solvePartOne,day05.solvePartTwo],
     [day06.solvePartOne,day06.solvePartTwo],
-    [day07.solvePartOne,day07.solvePartTwo]]
+    [day07.solvePartOne,day07.solvePartTwo],
+    [cast[Solution](day08.solvePartOne),cast[Solution](day08.solvePartTwo)]]
 
 when isMainModule:
     let parameter = paramStr(1)
