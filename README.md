@@ -2,6 +2,10 @@
 
 If you hate easy and elegant solutions to problems, these solutions are just the thing for you.
 
+## 2024 [![2024 Tests 🧪](https://github.com/portrik/adventofcode/actions/workflows/2024.yaml/badge.svg)](https://github.com/portrik/adventofcode/actions/workflows/2024.yaml)
+
+Trying out .NET with F#.
+
 ## 2023 [![2023 Tests](https://github.com/portrik/adventofcode/actions/workflows/2023.yaml/badge.svg)](https://github.com/portrik/adventofcode/actions/workflows/2023.yaml)
 
 Nim time.
