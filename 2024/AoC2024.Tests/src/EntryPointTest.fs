@@ -1,4 +1,4 @@
-module Tests
+module EntryPointTests
 
 open Xunit
 open AoC2024

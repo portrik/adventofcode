@@ -1,24 +1,25 @@
 ﻿namespace AoC2024
 
 open System
+open Day01
 
 module AoC2024 =
-    let handleUnknownDay (day: string) : int =
-        printfn $"Unknown day \"{day}\""
-
-        1
-
-    let handleMissingArguments () : int =
-        printfn "The day argument is missing!"
-
-        1
-
     let entryPoint (arguments: string array) : int =
         let arguments = List.ofArray (arguments)
 
-        match arguments with
-        | [] -> handleMissingArguments ()
-        | unknown -> handleUnknownDay (String.Join(",", unknown))
+        let solution =
+            match arguments with
+            | [ "1" ] -> Day01.solve () |> Some
+            | [] -> (fun _ -> printfn "The day argument is missing!") |> fun _ -> None
+            | unknown ->
+                unknown
+                |> fun unknown -> (String.Join(",", unknown))
+                |> fun day -> printfn $"Unknown day \"{day}\""
+                |> fun _ -> None
+
+        match solution with
+        | Some(first, second) -> printfn $"First: {first}\nSecond: {second}" |> fun _ -> 0
+        | None -> 1
 
 
     [<EntryPoint>]

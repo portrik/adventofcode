@@ -3,7 +3,9 @@
         "2022",
         "General",
         "2019",
-        "2023"
+        "2023",
+        "2024"
     ],
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "FSharp.suggestGitignore": false
 }
