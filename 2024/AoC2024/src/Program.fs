@@ -2,6 +2,7 @@
 
 open System
 open Day01
+open Day02
 
 module AoC2024 =
     let entryPoint (arguments: string array) : int =
@@ -9,8 +10,11 @@ module AoC2024 =
 
         let solution =
             match arguments with
-            | [ "1" ] -> Day01.solve () |> Some
-            | [] -> (fun _ -> printfn "The day argument is missing!") |> fun _ -> None
+            | [ "1" ]
+            | [ "01" ] -> Day01.solve () |> Some
+            | [ "2" ]
+            | [ "02" ] -> Day02.solve () |> Some
+            | [] -> printfn "The day argument is missing!" |> fun _ -> None
             | unknown ->
                 unknown
                 |> fun unknown -> (String.Join(",", unknown))
