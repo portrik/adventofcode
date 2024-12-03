@@ -1,8 +1,6 @@
 ﻿namespace AoC2024
 
 open System
-open Day01
-open Day02
 
 module AoC2024 =
     let entryPoint (arguments: string array) : int =
@@ -14,6 +12,8 @@ module AoC2024 =
             | [ "01" ] -> Day01.solve () |> Some
             | [ "2" ]
             | [ "02" ] -> Day02.solve () |> Some
+            | [ "3" ]
+            | [ "03" ] -> Day03.solve () |> Some
             | [] -> printfn "The day argument is missing!" |> fun _ -> None
             | unknown ->
                 unknown
