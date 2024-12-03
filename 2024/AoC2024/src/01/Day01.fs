@@ -3,29 +3,29 @@ module Day01
 open System
 open System.IO
 
-let first (left: int list) (right: int list) : int =
-    List.fold2
+let first (left: int seq) (right: int seq) : int =
+    Seq.fold2
         (fun accumulated first second -> accumulated + Int32.Abs(first - second))
         0
-        (List.sort left)
-        (List.sort right)
+        (Seq.sort left)
+        (Seq.sort right)
 
-let second (left: int list) (right: int list) : int =
+let second (left: int seq) (right: int seq) : int =
     left
-    |> List.sort
-    |> List.fold
+    |> Seq.sort
+    |> Seq.fold
         (fun accumulated current ->
             accumulated
             + (current
-               * (right |> List.filter (fun value -> current.Equals value) |> List.length)))
+               * (right |> Seq.filter (fun value -> current.Equals value) |> Seq.length)))
         0
 
-let valueFolder (accumulator: int list * int list) (current: int * int) : int list * int list =
+let valueFolder (accumulator: int seq * int seq) (current: int * int) : int seq * int seq =
     let (left, right) = accumulator
     let (leftValue, rightValue) = current
 
-    let newLeft = left |> List.append ([ leftValue ])
-    let newRight = right |> List.append ([ rightValue ])
+    let newLeft = left |> Seq.append ([ leftValue ])
+    let newRight = right |> Seq.append ([ rightValue ])
 
     (newLeft, newRight)
 

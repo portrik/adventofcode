@@ -1,6 +1,5 @@
 module Day03
 
-open System
 open System.IO
 open System.Text.RegularExpressions
 
@@ -15,10 +14,7 @@ let multiplyMatch (regexMatch: Match) : int =
 let first (instructions: string) : int =
     let pattern = @"mul\((?<left>\d{1,3}),(?<right>\d{1,3})\)"
 
-    Regex.Matches(instructions, pattern)
-    |> List.ofSeq
-    |> List.map multiplyMatch
-    |> List.sum
+    Regex.Matches(instructions, pattern) |> Seq.map multiplyMatch |> Seq.sum
 
 let handleInstruction (state: State) (regexMatch: Match) : State =
     match regexMatch.Value with
@@ -35,8 +31,7 @@ let second (instructions: string) : int =
     let pattern = @"(do\(\)|don't\(\)|mul\((?<left>\d{1,3}),(?<right>\d{1,3})\))"
 
     Regex.Matches(instructions, pattern)
-    |> List.ofSeq
-    |> List.fold handleInstruction { enabled = true; value = 0 }
+    |> Seq.fold handleInstruction { enabled = true; value = 0 }
     |> (fun state -> state.value)
 
 
