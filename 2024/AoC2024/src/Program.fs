@@ -18,6 +18,8 @@ module AoC2024 =
             | [ "04" ] -> Day04.solve () |> Some
             | [ "5" ]
             | [ "05" ] -> Day05.solve () |> Some
+            | [ "6" ]
+            | [ "06" ] -> Day06.solve () |> Some
             | [] -> printfn "The day argument is missing!" |> fun _ -> None
             | unknown ->
                 unknown

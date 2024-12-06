@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="src/06/Day06.fs" />
     <Compile Include="src/05/Day05.fs" />
     <Compile Include="src/04/Day04.fs" />
     <Compile Include="src/03/Day03.fs" />
