@@ -29,7 +29,7 @@ let valueFolder (accumulator: int seq * int seq) (current: int * int) : int seq 
 
     (newLeft, newRight)
 
-let solve () : (int * int) =
+let solve () : (int64 * int64) =
     let (left, right) =
         Path.Combine(__SOURCE_DIRECTORY__, "input.txt")
         |> File.ReadAllLines

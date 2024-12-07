@@ -89,7 +89,7 @@ let second (rules: (int * int) list) (printOrder: int list list) : int =
     |> List.map (fun print -> print |> List.item (List.length (print) / 2))
     |> List.sum
 
-let solve () : (int * int) =
+let solve () : (int64 * int64) =
     let input =
         Path.Combine(__SOURCE_DIRECTORY__, "input.txt")
         |> File.ReadAllLines

@@ -1,7 +1,6 @@
 module Day01Tests
 
 open Xunit
-open Day01
 
 [<Fact>]
 let ``Test Case First`` () : unit =

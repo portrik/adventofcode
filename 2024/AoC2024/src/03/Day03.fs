@@ -35,7 +35,7 @@ let second (instructions: string) : int =
     |> (fun state -> state.value)
 
 
-let solve () : (int * int) =
+let solve () : (int64 * int64) =
     let instructions =
         Path.Combine(__SOURCE_DIRECTORY__, "input.txt") |> File.ReadAllText
 

@@ -37,7 +37,7 @@ let second (levels: int seq seq) : int =
     |> Seq.filter (fun value -> value = true)
     |> Seq.length
 
-let solve () : (int * int) =
+let solve () : (int64 * int64) =
     let levels =
         Path.Combine(__SOURCE_DIRECTORY__, "input.txt")
         |> File.ReadAllLines

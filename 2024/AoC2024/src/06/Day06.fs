@@ -197,7 +197,7 @@ let moveInfiniteWithPrint (index: int) (value: string list list) (length: int) :
     let result = moveGuardInfinite (Some value) (Set [])
 
     let percent = float (index) / float (length) * 100.0 |> round
-    printfn $"{percent} Percent ({index}/{length})"
+    // printfn $"{percent} Percent ({index}/{length})"
 
     match result with
     | (_, _, false) -> false
@@ -228,7 +228,7 @@ let second (input: string list list) : int =
     |> List.filter (fun value -> value = true)
     |> List.length
 
-let solve () : (int * int) =
+let solve () : (int64 * int64) =
     let input =
         Path.Combine(__SOURCE_DIRECTORY__, "input.txt")
         |> File.ReadAllLines

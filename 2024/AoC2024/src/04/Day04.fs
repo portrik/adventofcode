@@ -120,7 +120,7 @@ let second (input: string list list) : int =
     |> List.collect id
     |> List.sum
 
-let solve () : int * int =
+let solve () : int64 * int64 =
     let input =
         Path.Combine(__SOURCE_DIRECTORY__, "input.txt")
         |> File.ReadAllLines
