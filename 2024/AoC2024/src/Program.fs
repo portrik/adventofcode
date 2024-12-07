@@ -6,7 +6,7 @@ module AoC2024 =
     let entryPoint (arguments: string array) : int =
         let arguments = List.ofArray (arguments)
 
-        let solution =
+        let solution: (int64 * int64) option =
             match arguments with
             | [ "1" ]
             | [ "01" ] -> Day01.solve () |> Some
@@ -20,6 +20,8 @@ module AoC2024 =
             | [ "05" ] -> Day05.solve () |> Some
             | [ "6" ]
             | [ "06" ] -> Day06.solve () |> Some
+            | [ "7" ]
+            | [ "07" ] -> Day07.solve () |> Some
             | [] -> printfn "The day argument is missing!" |> fun _ -> None
             | unknown ->
                 unknown
