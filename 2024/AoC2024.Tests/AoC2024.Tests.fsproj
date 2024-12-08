@@ -7,6 +7,7 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="src/Day08Test.fs" />
     <Compile Include="src/Day07Test.fs" />
     <Compile Include="src/Day06Test.fs" />
     <Compile Include="src/Day05Test.fs" />
