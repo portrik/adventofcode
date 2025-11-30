@@ -1,0 +1,27 @@
+name: 2025 Tests
+
+on:
+  push:
+    paths:
+      - "2025/**"
+
+jobs:
+  run:
+    name: Test 2025 Solutions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Update rustup
+        run: |
+          rustup update
+
+      - name: Clippy
+        run: |
+          cargo clippy
+
+      - name: Test
+        run: |
+          cargo test
