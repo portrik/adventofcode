@@ -1,5 +1,11 @@
 # 2025 with Rust
 
+---
+
+## [![2025 Tests](https://github.com/portrik/adventofcode/actions/workflows/2025.yaml/badge.svg)](https://github.com/portrik/adventofcode/actions/workflows/2025.yaml)
+
+---
+
 Check the lints with clippy by running
 
 ```fish

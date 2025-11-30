@@ -2,7 +2,7 @@
 
 If you hate easy and elegant solutions to problems, these solutions are just the thing for you.
 
-## 2025
+## 2025 [![2025 Tests](https://github.com/portrik/adventofcode/actions/workflows/2025.yaml/badge.svg)](https://github.com/portrik/adventofcode/actions/workflows/2025.yaml)
 
 Going rusty once again. Maybe the shorter month will force me to finally learn it.
 
