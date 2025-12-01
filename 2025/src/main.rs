@@ -7,6 +7,7 @@ use crate::solution::Solution;
 
 enum Day {
     Day00,
+    Day01,
 }
 
 fn run_solution<Solver: Solution>(solver: &Solver) -> (String, String) {
@@ -29,6 +30,7 @@ fn main() {
 
     let parsed_day: Option<Day> = match day_number {
         0 => Some(Day::Day00),
+        1 => Some(Day::Day01),
         _ => None,
     };
 
@@ -49,6 +51,7 @@ fn main() {
 
     let (first_stage, second_stage) = match day {
         Day::Day00 => run_solution(&solutions::day00::Solver::new(input)),
+        Day::Day01 => run_solution(&solutions::day01::Solver::new(input)),
     };
 
     println!("First stage: {first_stage}");
