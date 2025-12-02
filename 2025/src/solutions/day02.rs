@@ -38,19 +38,11 @@ fn is_repeated(value: i64) -> bool {
     let value_as_string = value.to_string();
     let length = value_as_string.len();
 
-    for prefix_length in 1..=(length / 2) {
-        if !length.is_multiple_of(prefix_length) {
-            continue;
-        }
-
-        let repeat_count = length / prefix_length;
-        let repeated = value_as_string[..prefix_length].repeat(repeat_count);
-        if repeated == value_as_string {
-            return true;
-        }
-    }
-
-    false
+    (1..=(length / 2))
+        .filter(|prefix_length| length.is_multiple_of(*prefix_length))
+        .any(|prefix_length| {
+            value_as_string[..prefix_length].repeat(length / prefix_length) == value_as_string
+        })
 }
 
 impl Solution for Solver {
