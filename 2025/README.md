@@ -23,3 +23,10 @@ Run a solver for the specified day with
 ```fish
 cargo run $DAY_NUMBER
 ```
+
+To run the optimized build for benchmarking, just run
+
+```fish
+cargo build --release
+./target/release/advent-of-code-2025 $DAY_NUMBER
+```
