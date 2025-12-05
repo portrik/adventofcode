@@ -42,66 +42,52 @@ fn parse_input(input: &str) -> (Vec<(u128, u128)>, Vec<u128>) {
     (ranges, ids)
 }
 
+fn ranges_overlap(
+    (left_left, left_right): &(u128, u128),
+    (right_left, right_right): &(u128, u128),
+) -> bool {
+    (left_left >= right_left && left_left <= right_right)
+        || (right_left >= left_left && right_left <= left_right)
+        || (right_right >= left_left && right_right <= left_right)
+        || (left_right >= right_left && left_right <= right_right)
+}
+
 fn construct_ranges(source_ranges: &[(u128, u128)]) -> Vec<(u128, u128)> {
     let mut ranges: Vec<(u128, u128)> = vec![];
 
     for (left, right) in source_ranges {
-        let left_positions = ranges
+        let overlaps = ranges
             .iter()
             .by_ref()
             .enumerate()
-            .filter(|(_index, (old_left, old_right))| {
-                (*left >= *old_left && *left <= *old_right)
-                    || (*old_left >= *left && *old_left <= *right)
-            })
+            .filter(|(_index, range)| ranges_overlap(range, &(*left, *right)))
             .map(|(index, &range)| (index, range))
             .collect::<Vec<(usize, (u128, u128))>>();
 
-        let right_positions = ranges
+        let mut indexes_to_remove = overlaps
             .iter()
             .by_ref()
-            .enumerate()
-            .filter(|(_index, (old_left, old_right))| {
-                (*right >= *old_left && *right <= *old_right)
-                    || (*old_right >= *left && *old_right <= *right)
-            })
-            .map(|(index, &range)| (index, range))
-            .collect::<Vec<(usize, (u128, u128))>>();
-
-        let mut indexes_to_remove: Vec<usize> = vec![];
-        for (index, _) in &left_positions {
-            if !indexes_to_remove.contains(index) {
-                indexes_to_remove.push(*index);
-            }
-        }
-
-        for (index, _) in &right_positions {
-            if !indexes_to_remove.contains(index) {
-                indexes_to_remove.push(*index);
-            }
-        }
-
+            .map(|(index, _range)| *index)
+            .collect::<Vec<usize>>();
         indexes_to_remove.sort_by(|a, b| b.cmp(a));
         for index in &indexes_to_remove {
             ranges.remove(*index);
         }
 
-        let mut new_left = [*left].to_vec();
-        let mut new_right = [*right].to_vec();
-        for (_index, (old_left, old_right)) in &left_positions {
-            new_left.push(*old_left);
-            new_right.push(*old_right);
-        }
+        let new_left = overlaps
+            .iter()
+            .by_ref()
+            .map(|(_index, (left, _right))| *left)
+            .min()
+            .map_or(*left, |value| value.min(*left));
+        let new_right = overlaps
+            .iter()
+            .by_ref()
+            .map(|(_index, (_left, right))| *right)
+            .max()
+            .map_or(*right, |value| value.max(*right));
 
-        for (_index, (old_left, old_right)) in &right_positions {
-            new_left.push(*old_left);
-            new_right.push(*old_right);
-        }
-
-        ranges.push((
-            *new_left.iter().min().unwrap_or(left),
-            *new_right.iter().max().unwrap_or(right),
-        ));
+        ranges.push((new_left, new_right));
     }
 
     ranges
