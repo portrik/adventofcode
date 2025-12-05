@@ -11,6 +11,7 @@ enum Day {
     Day02,
     Day03,
     Day04,
+    Day05,
 }
 
 fn run_solution<Solver: Solution>(solver: &Solver) -> (String, String) {
@@ -37,6 +38,7 @@ fn main() {
         2 => Some(Day::Day02),
         3 => Some(Day::Day03),
         4 => Some(Day::Day04),
+        5 => Some(Day::Day05),
         _ => None,
     };
 
@@ -61,6 +63,7 @@ fn main() {
         Day::Day02 => run_solution(&solutions::day02::Solver::new(input)),
         Day::Day03 => run_solution(&solutions::day03::Solver::new(input)),
         Day::Day04 => run_solution(&solutions::day04::Solver::new(input)),
+        Day::Day05 => run_solution(&solutions::day05::Solver::new(input)),
     };
 
     println!("First stage: {first_stage}");
