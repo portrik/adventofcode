@@ -5,6 +5,7 @@ edition = "2024"
 authors = ["Patrik Dvořáček <patrik@dvoracek.dev>"]
 
 [dependencies]
+num-integer = "0.1.46"
 
 [lints.clippy]
 pedantic = "deny"
