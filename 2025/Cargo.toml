@@ -5,6 +5,7 @@ edition = "2024"
 authors = ["Patrik Dvořáček <patrik@dvoracek.dev>"]
 
 [dependencies]
+itertools = "0.14.0"
 num-integer = "0.1.46"
 
 [lints.clippy]
