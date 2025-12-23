@@ -1,4 +1,4 @@
-use std::{collections::{HashSet, VecDeque}};
+use std::collections::{HashSet, VecDeque};
 
 use crate::solution::Solution;
 use num_integer::Integer;
@@ -109,7 +109,11 @@ fn reduce_row(matrix: &mut [Vec<i64>], joltage: &mut [i64], left: usize, right: 
 }
 
 fn reduce(matrix: &mut Vec<Vec<i64>>, joltage: &mut Vec<i64>, combinations: &mut [u32]) {
-    let column_count = if matrix.is_empty() { 0 } else { matrix[0].len() };
+    let column_count = if matrix.is_empty() {
+        0
+    } else {
+        matrix[0].len()
+    };
 
     // Forward elimination
     for index in 0..column_count {
@@ -142,8 +146,14 @@ fn reduce(matrix: &mut Vec<Vec<i64>>, joltage: &mut Vec<i64>, combinations: &mut
         .filter(|&index| matrix[index].iter().any(|&value| value != 0))
         .collect();
 
-    *matrix = non_zero_row_indices.iter().map(|&index| matrix[index].clone()).collect();
-    *joltage = non_zero_row_indices.iter().map(|&index| joltage[index]).collect();
+    *matrix = non_zero_row_indices
+        .iter()
+        .map(|&index| matrix[index].clone())
+        .collect();
+    *joltage = non_zero_row_indices
+        .iter()
+        .map(|&index| joltage[index])
+        .collect();
 
     // Back substitution
     for index in (0..matrix.len()).rev() {
@@ -243,8 +253,8 @@ fn get_jolt_presses(machine: &Machine) -> u64 {
                 break;
             }
 
-            solution += u64::try_from(a)
-                .expect("Attempted to unwrap an invalid i64 value into u32.");
+            solution +=
+                u64::try_from(a).expect("Attempted to unwrap an invalid i64 value into u32.");
         }
 
         minimum = minimum.min(solution);
